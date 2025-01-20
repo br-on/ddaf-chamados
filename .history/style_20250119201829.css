@@ -1,0 +1,12 @@
+body {
+    background-color: black;
+    display: flex;
+}
+header {
+    flex: 1;
+    background-color: aqua;
+}
+main {
+    flex: 6;
+    background-color: aquamarine;
+}

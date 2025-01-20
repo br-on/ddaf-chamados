@@ -1,0 +1,12 @@
+body {
+    background-color: black;
+    display: flex;
+}
+header {
+    width: 15%;
+    background-color: aqua;
+}
+main {
+    width: 75%;
+    background-color: aquamarine;
+}

@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: black;
+    display: flex;
+    height: 100vh;
+}
+header {
+    width: 15%;
+    background-color: aqua;
+}
+.filtros {
+    height: 60%;
+    background-color: red;
+}
+.percentual {
+    height: 40%;
+    background-color: green;
+}
+main {
+    width: 85%;
+    background-color: aquamarine;
+}
+.tipos-demandas {
+    height: 45%;
+    background-color: rgb(31, 31, 143);
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 30% 30% 30%;
+    grid-template-rows: 22.5% 22.5% 22.5% 22.5%;
+    column-gap: 3%;
+}
+.andamento-demandas {
+    height: 45%;
+    background-color: rgb(5, 5, 82);
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 30% 30% 30%;
+}
+footer {
+    height:10%;
+    background-color: blue;
+}
+.demanda-tipo {
+    border: solid rgb(0, 0, 0) 2px;
+    border-radius: 25px;
+    margin-top: 10px;
+}
+.demanda-andamento{
+    background-color: gray;
+}

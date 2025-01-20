@@ -1,0 +1,13 @@
+body {
+    background-color: black;
+    display: flex;
+}
+header {
+    display: block;
+    width: 25%;
+    background-color: aqua;
+}
+main {
+    width: 75%;
+    background-color: aquamarine;
+}
