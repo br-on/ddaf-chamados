@@ -3,14 +3,22 @@
     padding: 0;
 }
 body {
+    background-color: black;
     display: flex;
     height: 100vh;
-   flex-direction: column;
+    flex-direction: column;
 }
 header {
     height: 10vh;
-    background-color: rgb(0, 0, 0);
     border-bottom: solid 3px white ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+header h1 {
+    color: white;
+    font-family:'Times New Roman', Times, serif
 }
 main {
     height: 70vh;
@@ -18,9 +26,7 @@ main {
 }
 .percentual {
     height: 15vh;
-    background-color: rgb(230, 22, 22);
-    border-right: solid 2px white;
-    border-top: solid 2px white;
+    border-top: solid 2px white;  
 }
 footer {
     height:5vh;
@@ -32,16 +38,9 @@ footer {
     color: antiquewhite;
     border-top: solid 5px white;
 }
-
-
-
 .filtros {
     display: flex;
-    flex-direction: column;
-    border-right: solid 2px white;
 }
-
-
 .tipos-demandas {
     height: 45%;
     background-color: rgb(0, 0, 0);
@@ -52,7 +51,7 @@ footer {
     column-gap: 3%;
 }
 .andamento-demandas {
-    height: 100%;
+    height: 55%;
     background-color: rgb(0, 0, 0);
     display: grid;
     justify-content: center;
@@ -67,7 +66,39 @@ footer {
     display: flex;
 }
 .demanda-andamento{
-    background-color: gray;
+    border: solid 2.5px rgb(255, 255, 255);
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+.titulo-andamento {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: solid 2px rgb(217, 221, 236);
+    font-size: 1.2em;
+    background-color: rgb(255, 255, 255);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    height: 5%;
+}
+.area-andamento {
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+.demanda {
+    background-color: brown;
+    margin-bottom: 15px;
+    min-height: 50px;
+    border: solid 2px white;
+    width: 98%;
 }
 .footer-sdds4{
     margin-top: 1.5px;
@@ -80,14 +111,21 @@ footer {
     border-right: solid 0.8px white;
 }
 .opcao-filtro, .relatorio-geral {
-    margin-top: 10px;
+    color: aliceblue;
+    font-size: 1.3em;
+    margin: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: aquamarine;
+    padding: 2.5px;
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+}
+.opcao-filtro select {
+    width: 90%;
 }
 .img-tipo-demanda {
-    background-color: rgb(217, 199, 199);
     width: 25%;
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
@@ -100,8 +138,42 @@ footer {
     max-width: 98%;
 }
 .info-tipo-demanda {
-    background-color: red;
+    color: white;
     width: 75%;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
+    display: flex;
+    flex-direction: column;
+}
+.titulo-tipo-demanda {
+    font-size: 1.5em;
+    border-bottom: solid 2.5px white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.contagem-tipo-demanda {
+    display: flex;
+    
+}
+.caixa-finalizado {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    margin-left: 3%;
+    border-bottom: solid 2px white;
+}
+
+.red {
+    background-color: red;
+}
+.yellow{
+    background-color: yellow;
+}
+.blue {
+    background-color: blue;
+}
+.div-opaca {
+    opacity: 0.3; /* Define a opacidade da div (80%) */
 }
