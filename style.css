@@ -177,3 +177,54 @@ footer {
 .div-opaca {
     opacity: 0.3; /* Define a opacidade da div (80%) */
 }
+
+/* Media Query para telas menores que 768px */
+@media (max-width: 768px) {
+    body {
+        height: auto;
+    }
+    header {
+        font-size: 0.7em;
+        height: 150px;
+    }
+    main {
+        height: auto;
+    }
+    .andamento-demandas {
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 100%;
+        grid-template-rows: auto;
+        row-gap: 5px;
+    }
+
+    .percentual {
+        font-size: 0.7em;
+        height: 200px;
+        border-top: solid 2px rgb(255, 255, 255);  
+    }
+    footer {
+        height:50px;
+        padding: 5px;
+        background-color: rgb(0, 0, 0);
+        border-top: solid 5px white;
+    }
+    .tipos-demandas {
+        height: 600px;
+        font-size: 0.7em;
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 45% 45%;
+        grid-template-rows: 15% 15% 15% 15% 15% 15%;
+        row-gap: 10px;
+    }
+    .demanda-tipo {
+        height: 75px;
+    }
+    .demanda-andamento{
+        background-color: cadetblue;
+        height: 250px;
+        margin-bottom: 15px;
+        
+    }
+}
