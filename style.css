@@ -87,7 +87,7 @@ footer {
     background-color: aquamarine;
 }
 .img-tipo-demanda {
-    background-color: white;
+    background-color: rgb(217, 199, 199);
     width: 25%;
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
@@ -97,7 +97,7 @@ footer {
 }
 .img-tipo-demanda img {
     max-height: 90%;
-    max-width: 100%;
+    max-width: 98%;
 }
 .info-tipo-demanda {
     background-color: red;
