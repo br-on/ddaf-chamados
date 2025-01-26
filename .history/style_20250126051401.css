@@ -21,6 +21,7 @@ header h1 {
     font-family:'Times New Roman', Times, serif
 }
 main {
+    background-color: brown;
     height: 70vh;
 }
 .percentual {
@@ -40,13 +41,13 @@ footer {
     display: flex;
 }
 .tipos-demandas {
+    background-color: aqua;
     height: 50%;
     display: grid;
-    justify-content: center;
+
     grid-template-columns: 30% 30% 30%;
     grid-template-rows: 22.5% 22.5% 22.5% 22.5%;
     column-gap: 3%;
-    row-gap: 10px;
 }
 .andamento-demandas {
     height: 50%;
@@ -57,7 +58,7 @@ footer {
 }
 
 .demanda-tipo {
-    border: solid rgb(255, 255, 255) 2px;
+    border: solid rgb(185, 0, 161) 2px;
     border-radius: 20px;
     display: flex;
 }
@@ -90,6 +91,7 @@ footer {
     margin-top: 10px;
 }
 .demanda {
+    background-color: brown;
     margin-bottom: 15px;
     min-height: 50px;
     border: solid 2px white;
@@ -232,9 +234,6 @@ footer {
         min-height: 250px;
         margin-bottom: 15px;   
     }
-    .api-info {
-        font-size: 2.3em;
-    }
 }
 @media (min-aspect-ratio: 3/2) {
     body {
@@ -272,8 +271,11 @@ footer {
     .tipos-demandas {
         font-size: 0.7em;
         width: 55%;
-        height: 90%;
-        column-gap: 1%;
+        height: 100%;
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 32% 32% 32%;
+        grid-template-rows: 25% 25% 25% 25%;
     }
     .titulo-tipo-demanda {
         font-size: 1em;

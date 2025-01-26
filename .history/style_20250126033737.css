@@ -40,16 +40,15 @@ footer {
     display: flex;
 }
 .tipos-demandas {
-    height: 50%;
+    height: 45%;
     display: grid;
     justify-content: center;
     grid-template-columns: 30% 30% 30%;
     grid-template-rows: 22.5% 22.5% 22.5% 22.5%;
     column-gap: 3%;
-    row-gap: 10px;
 }
 .andamento-demandas {
-    height: 50%;
+    height: 55%;
     display: grid;
     justify-content: center;
     grid-template-columns: 30% 30% 30%;
@@ -58,7 +57,8 @@ footer {
 
 .demanda-tipo {
     border: solid rgb(255, 255, 255) 2px;
-    border-radius: 20px;
+    border-radius: 25px;
+    margin-top: 10px;
     display: flex;
 }
 .demanda-andamento{
@@ -90,6 +90,7 @@ footer {
     margin-top: 10px;
 }
 .demanda {
+    background-color: brown;
     margin-bottom: 15px;
     min-height: 50px;
     border: solid 2px white;
@@ -133,6 +134,7 @@ footer {
     max-width: 98%;
 }
 .info-tipo-demanda {
+    background-color: green;
     color: white;
     width: 75%;
     border-top-right-radius: 25px;
@@ -151,18 +153,22 @@ footer {
 .contagem-tipo-demanda {
     height: 75%;
     display: flex;
+    background-color: aquamarine;
 }
 .caixa-finalizado {
+    font-size: 0.95em;
+    background-color: rgb(147, 0, 177);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 30%;
     margin-left: 3%;
+    border-bottom: solid 2px white;
 }
-.api-info {
-    font-size: 1.5em;
-    color: rgb(247, 247, 247);
+.api-pendente-eletrica {
+    font-size: 1.35em;
+    color: red;
 }
 
 .red {
@@ -232,9 +238,6 @@ footer {
         min-height: 250px;
         margin-bottom: 15px;   
     }
-    .api-info {
-        font-size: 2.3em;
-    }
 }
 @media (min-aspect-ratio: 3/2) {
     body {
@@ -272,8 +275,11 @@ footer {
     .tipos-demandas {
         font-size: 0.7em;
         width: 55%;
-        height: 90%;
-        column-gap: 1%;
+        height: 100%;
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 32% 32% 32%;
+        grid-template-rows: 25% 25% 25% 25%;
     }
     .titulo-tipo-demanda {
         font-size: 1em;

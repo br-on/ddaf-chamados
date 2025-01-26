@@ -40,16 +40,15 @@ footer {
     display: flex;
 }
 .tipos-demandas {
-    height: 50%;
+    height: 45%;
     display: grid;
     justify-content: center;
     grid-template-columns: 30% 30% 30%;
     grid-template-rows: 22.5% 22.5% 22.5% 22.5%;
     column-gap: 3%;
-    row-gap: 10px;
 }
 .andamento-demandas {
-    height: 50%;
+    height: 55%;
     display: grid;
     justify-content: center;
     grid-template-columns: 30% 30% 30%;
@@ -58,7 +57,8 @@ footer {
 
 .demanda-tipo {
     border: solid rgb(255, 255, 255) 2px;
-    border-radius: 20px;
+    border-radius: 25px;
+    margin-top: 10px;
     display: flex;
 }
 .demanda-andamento{
@@ -90,6 +90,7 @@ footer {
     margin-top: 10px;
 }
 .demanda {
+    background-color: brown;
     margin-bottom: 15px;
     min-height: 50px;
     border: solid 2px white;
@@ -141,7 +142,6 @@ footer {
     flex-direction: column;
 }
 .titulo-tipo-demanda {
-    height: 25%;
     font-size: 1.5em;
     border-bottom: solid 2.5px white;
     display: flex;
@@ -149,20 +149,16 @@ footer {
     justify-content: center;
 }
 .contagem-tipo-demanda {
-    height: 75%;
     display: flex;
+    
 }
 .caixa-finalizado {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     width: 30%;
     margin-left: 3%;
-}
-.api-info {
-    font-size: 1.5em;
-    color: rgb(247, 247, 247);
+    border-bottom: solid 2px white;
 }
 
 .red {
@@ -229,11 +225,8 @@ footer {
     }
     .demanda-andamento{
         background-color: cadetblue;
-        min-height: 250px;
+        height: 250px;
         margin-bottom: 15px;   
-    }
-    .api-info {
-        font-size: 2.3em;
     }
 }
 @media (min-aspect-ratio: 3/2) {
@@ -247,19 +240,21 @@ footer {
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        border: 0px;
     }
     .filtros {
         width: 100vw;
         display: flex;
+        background-color: yellowgreen;
         margin-top: 10px;
     }
     .opcao-filtro {
+        color: rgb(204, 11, 11);
         font-size: 1em;
         display: flex;
         flex-direction: row;
         width: 500px;
         padding: 10px;
+        border: solid 1px black;
     }
     .opcao-filtro select {
         width: 90%;
@@ -272,8 +267,11 @@ footer {
     .tipos-demandas {
         font-size: 0.7em;
         width: 55%;
-        height: 90%;
-        column-gap: 1%;
+        height: 100%;
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 32% 32% 32%;
+        grid-template-rows: 25% 25% 25% 25%;
     }
     .titulo-tipo-demanda {
         font-size: 1em;
@@ -317,8 +315,5 @@ footer {
         display: flex;
         align-items: center;
         justify-content: center;
-    }
-    .titulo-andamento {
-        font-size: 0.67em;
     }
 }

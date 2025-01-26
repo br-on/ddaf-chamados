@@ -40,6 +40,7 @@ footer {
     display: flex;
 }
 .tipos-demandas {
+    background-color: aqua;
     height: 50%;
     display: grid;
     justify-content: center;
@@ -57,7 +58,7 @@ footer {
 }
 
 .demanda-tipo {
-    border: solid rgb(255, 255, 255) 2px;
+    border: solid rgb(185, 0, 161) 2px;
     border-radius: 20px;
     display: flex;
 }
@@ -231,9 +232,6 @@ footer {
         background-color: cadetblue;
         min-height: 250px;
         margin-bottom: 15px;   
-    }
-    .api-info {
-        font-size: 2.3em;
     }
 }
 @media (min-aspect-ratio: 3/2) {
