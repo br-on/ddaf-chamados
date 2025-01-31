@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const demandasAgrupadas = agruparDemandas(data);
 
             // Atualizando o HTML com os dados agrupados
-            updateUI(demandasAgrupadas);
+            updateUI(demandasAgrupadas, data);
 
         } catch (error) {
             console.error('Erro ao buscar dados:', error);
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return agrupado;
     }
 
-    function updateUI(demandasAgrupadas) {
+    function updateUI(demandasAgrupadas, demandas) {
         console.log("Atualizando interface...");
 
         const tiposDemandas = [
@@ -48,6 +48,22 @@ document.addEventListener("DOMContentLoaded", () => {
             "Inservíveis", "Água-mineral", "Lixo-infectado"
         ];
 
+        // Mapeamento de imagens por tipo de demanda
+        const imagemPorTipo = {
+            "Climatização": "img/tipo-demanda-climatizacao.png",
+            "Carro-pipa": "img/tipo-demanda-carro-pipa.png",
+            "Poda": "img/tipo-demanda-poda.png",
+            "Hidráulica": "img/tipo-demanda-hidráulica.png",
+            "Elétrica": "img/tipo-demanda-eletrica.png",
+            "Almoxarifado": "img/tipo-demanda-almoxarifado.png",
+            "Reparos": "img/tipo-demanda-reparos.png",
+            "Infraestrutura": "img/tipo-demanda-infraestrutura.png",
+            "Capinação": "img/tipo-demanda-capinacao.png",
+            "Inservíveis": "img/tipo-demanda-inserviveis.png",
+            "Água-mineral": "img/tipo-demanda-agua-minireal.png",
+            "Lixo-infectado": "img/tipo-demanda-lixo-infectado.png"
+        };
+
         tiposDemandas.forEach(tipo => {
             const pendenteElem = document.querySelector(`#api-pendente-${tipo.toLowerCase()}`);
             const resolvidoElem = document.querySelector(`#api-resolvido-${tipo.toLowerCase()}`);
@@ -55,31 +71,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const contagem = demandasAgrupadas[tipo] || { pendente: 0, resolvido: 0, naoResolvido: 0 };
 
-            console.log(`Tipo: ${tipo}`, contagem);
+            if (pendenteElem) pendenteElem.textContent = contagem.pendente;
+            if (resolvidoElem) resolvidoElem.textContent = contagem.resolvido;
+            if (naoResolvidoElem) naoResolvidoElem.textContent = contagem.naoResolvido;
+        });
 
-            if (pendenteElem) {
-                pendenteElem.textContent = contagem.pendente;
-                console.log(`Atualizado: #api-pendente-${tipo.toLowerCase()} -> ${contagem.pendente}`);
-            } else {
-                console.error(`Elemento não encontrado: #api-pendente-${tipo.toLowerCase()}`);
+        document.getElementById("andamento-recebido").innerHTML = "";
+        document.getElementById("andamento-atendimento").innerHTML = "";
+        document.getElementById("andamento-finalizado").innerHTML = "";
+
+        demandas.forEach(demanda => {
+            const andamento = demanda["Andamento"] ? demanda["Andamento"].toLowerCase() : "recebido";
+            let containerId = "";
+            let demandaClass = "";
+            let botoes = "";
+
+            if (andamento === "recebido") {
+                containerId = "andamento-recebido";
+                demandaClass = "drecebida";
+                botoes = `<button>Detalhes</button><button>Atender</button>`;
+            } else if (andamento === "em atendimento") {
+                containerId = "andamento-atendimento";
+                demandaClass = "dandamento";
+                botoes = `<button>Finalizar</button>`;
+            } else if (andamento === "finalizado") {
+                containerId = "andamento-finalizado";
+                demandaClass = "dfinalizada";
+                botoes = `<button>Ver resultado</button>`;
             }
 
-            if (resolvidoElem) {
-                resolvidoElem.textContent = contagem.resolvido;
-                console.log(`Atualizado: #api-resolvido-${tipo.toLowerCase()} -> ${contagem.resolvido}`);
-            } else {
-                console.error(`Elemento não encontrado: #api-resolvido-${tipo.toLowerCase()}`);
-            }
+            if (containerId) {
+                const unidadeSaude = demanda["Unidade de Saúde"] || "Unidade desconhecida";
+                const tipoDemanda = demanda["Tipo da demanda"] || "Outros";
+                const imagemSrc = imagemPorTipo[tipoDemanda] || "img/default.png";
 
-            if (naoResolvidoElem) {
-                naoResolvidoElem.textContent = contagem.naoResolvido;
-                console.log(`Atualizado: #api-naoresolvido-${tipo.toLowerCase()} -> ${contagem.naoResolvido}`);
-            } else {
-                console.error(`Elemento não encontrado: #api-naoresolvido-${tipo.toLowerCase()}`);
+                const demandaDiv = document.createElement("div");
+                demandaDiv.classList.add("demanda", demandaClass);
+                demandaDiv.innerHTML = `
+                    <div class="demanda-img">
+                        <img src="${imagemSrc}" alt="${tipoDemanda}">
+                    </div>
+                    <div class="demanda-info">
+                        <div class="demanda-titulo-unidade">
+                            <span>${unidadeSaude}</span>
+                        </div>
+                        <div class="${demandaClass}-botoes">
+                            ${botoes}
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById(containerId).prepend(demandaDiv);
             }
         });
     }
 
-    // Chamando a função fetchData para iniciar o processo
     fetchData();
 });

@@ -153,6 +153,7 @@ footer {
 }
 .demanda-img img{
     height: 100%;
+    background-color: rgb(255, 255, 255);
 }
 .demanda-info {
     display: flex;
