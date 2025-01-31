@@ -63,8 +63,6 @@ footer {
 }
 .demanda-andamento{
     border: solid 2.5px rgb(255, 255, 255);
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
@@ -74,10 +72,9 @@ footer {
     align-items: center;
     justify-content: center;
     border-bottom: solid 2px rgb(217, 221, 236);
-    font-size: 1.2em;
+    font-size: 1em;
     background-color: rgb(255, 255, 255);
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+
     height: 5%;
 }
 .area-andamento {
@@ -89,12 +86,90 @@ footer {
     box-sizing: border-box;
     margin-top: 10px;
 }
+.drecebida {
+    background-color: red;
+    color: white;
+}
+.drecebida-botoes {
+    display: flex;
+    align-items: flex-end;
+    height: 50%;
+}
+.drecebida-botoes button{
+    width: 50%;
+    height: 100%;
+    font-weight: bold;
+}
+
+.dandamento {
+    background-color: yellow;
+    color: black;
+}
+.dandamento-botoes {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 50%;
+}
+.dandamento-botoes button{
+    width: 80%;
+    height: 100%;
+    font-weight: bold;
+}
+
+.dfinalizada {
+    background-color: blue;
+    color: white;
+}
+.dfinalizada-botoes {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 50%;
+}
+.dfinalizada-botoes button{
+    width: 80%;
+    height: 100%;
+    font-weight: bold;
+}
+
+.demanda button{
+    cursor: pointer;
+}
+.demanda button:hover {
+    background-color: rgb(13, 174, 223);
+    border: solid 2px white;
+}
 .demanda {
+    display: flex;
     margin-bottom: 15px;
-    min-height: 50px;
+    height: 50px;
     border: solid 2px white;
     width: 98%;
 }
+.demanda-img{
+    width: 25%;
+    height: 50px;
+}
+.demanda-img img{
+    height: 100%;
+}
+.demanda-info {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+}
+.demanda-titulo-unidade{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+}
+
+
+
+
+
 .footer-sdds4{
     margin-top: 1.5px;
     background-color: rgb(10, 78, 155);
