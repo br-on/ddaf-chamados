@@ -93,10 +93,11 @@ footer {
 .drecebida-botoes {
     display: flex;
     align-items: flex-end;
+    justify-content: flex-end;
     height: 50%;
 }
 .drecebida-botoes button{
-    width: 50%;
+    width: 80%;
     height: 100%;
     font-weight: bold;
 }
@@ -241,13 +242,13 @@ footer {
     color: rgb(247, 247, 247);
 }
 
-.red {
+.andamento-recebido {
     background-color: red;
 }
-.yellow{
+.andamento-ematendimento{
     background-color: yellow;
 }
-.blue {
+.andamento-finalizado {
     background-color: blue;
 }
 .div-opaca {

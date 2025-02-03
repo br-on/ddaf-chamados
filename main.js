@@ -1,19 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Função principal para buscar os dados da API
+    const API_URL = 'http://localhost:3000/ddaf-chamados';
+
     async function fetchData() {
         try {
             console.log("Iniciando fetch de dados...");
-            const response = await fetch('https://script.google.com/macros/s/AKfycbzmgmv-_SGh7g8_c3ZmicEsaScV6rqhQCYf8mSqIQTIcRTxbEIxDVa6Wjlfeac1p8xr/exec');
+            const response = await fetch(API_URL);
             const data = await response.json();
-
             console.log("Dados recebidos da API:", data);
 
-            // Agrupando as demandas por tipo e status
             const demandasAgrupadas = agruparDemandas(data);
-
-            // Atualizando o HTML com os dados agrupados
             updateUI(demandasAgrupadas, data);
-
         } catch (error) {
             console.error('Erro ao buscar dados:', error);
         }
@@ -23,8 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const agrupado = {};
 
         data.forEach(item => {
-            const tipoDemanda = item["Tipo da demanda"];
-            const status = item["STATUS"] ? item["STATUS"].toLowerCase() : "pendente";
+            const tipoDemanda = item.tipo_demanda || "Outros";
+            const status = item.status ? item.status.toLowerCase() : "pendente";
 
             if (!agrupado[tipoDemanda]) {
                 agrupado[tipoDemanda] = { pendente: 0, resolvido: 0, naoResolvido: 0 };
@@ -32,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (status === "pendente") agrupado[tipoDemanda].pendente++;
             else if (status === "resolvido") agrupado[tipoDemanda].resolvido++;
-            else if (status === "não solucionado" || status === "nao resolvido") agrupado[tipoDemanda].naoResolvido++;
+            else if (["não solucionado", "nao resolvido"].includes(status)) agrupado[tipoDemanda].naoResolvido++;
         });
 
         console.log("Dados agrupados:", agrupado);
@@ -44,11 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const tiposDemandas = [
             "Climatização", "Carro-pipa", "Poda", "Hidráulica", "Elétrica",
-            "Almoxarifado", "Reparos", "Infraestrutura", "Capinação", 
+            "Almoxarifado", "Reparos", "Infraestrutura", "Capinação",
             "Inservíveis", "Água-mineral", "Lixo-infectado"
         ];
 
-        // Mapeamento de imagens por tipo de demanda
         const imagemPorTipo = {
             "Climatização": "img/tipo-demanda-climatizacao.png",
             "Carro-pipa": "img/tipo-demanda-carro-pipa.png",
@@ -60,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "Infraestrutura": "img/tipo-demanda-infraestrutura.png",
             "Capinação": "img/tipo-demanda-capinacao.png",
             "Inservíveis": "img/tipo-demanda-inserviveis.png",
-            "Água-mineral": "img/tipo-demanda-agua-minireal.png",
+            "agua-mineral": "img/tipo-demanda-agua-mineral.png",
             "Lixo-infectado": "img/tipo-demanda-lixo-infectado.png"
         };
 
@@ -81,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("andamento-finalizado").innerHTML = "";
 
         demandas.forEach(demanda => {
-            const andamento = demanda["Andamento"] ? demanda["Andamento"].toLowerCase() : "recebido";
+            const andamento = demanda.andamento ? demanda.andamento.toLowerCase() : "recebido";
             let containerId = "";
             let demandaClass = "";
             let botoes = "";
@@ -89,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (andamento === "recebido") {
                 containerId = "andamento-recebido";
                 demandaClass = "drecebida";
-                botoes = `<button>Detalhes</button><button>Atender</button>`;
+                botoes = `<button>Ver chamado</button>`;
             } else if (andamento === "em atendimento") {
                 containerId = "andamento-atendimento";
                 demandaClass = "dandamento";
@@ -101,8 +96,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             if (containerId) {
-                const unidadeSaude = demanda["Unidade de Saúde"] || "Unidade desconhecida";
-                const tipoDemanda = demanda["Tipo da demanda"] || "Outros";
+                const unidadeSaude = demanda.us || "Unidade desconhecida";
+                const tipoDemanda = demanda.tipo_demanda || "Outros";
                 const imagemSrc = imagemPorTipo[tipoDemanda] || "img/default.png";
 
                 const demandaDiv = document.createElement("div");
