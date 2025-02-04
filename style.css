@@ -199,8 +199,8 @@ footer {
 }
 .img-tipo-demanda {
     width: 25%;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    border-top-left-radius: 18.5px;
+    border-bottom-left-radius: 18.5px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -251,8 +251,8 @@ footer {
 .andamento-finalizado {
     background-color: blue;
 }
-.div-opaca {
-    opacity: 0.3; /* Define a opacidade da div (80%) */
+.opaca {
+    opacity: 0.25; 
 }
 
 /* Media Query para telas menores que 768px */

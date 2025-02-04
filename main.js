@@ -79,6 +79,23 @@ document.addEventListener("DOMContentLoaded", () => {
             "Lixo-infectado": "img/tipo-demanda-lixo-infectado.png"
         };
 
+        // Obter os tipos de demanda presentes nos dados
+        const tiposNosDados = new Set(demandas.map(d => d.tipo_demanda));
+
+        // Verifica quais tipos de demanda não estão nos dados e aplica a classe "opaca"
+        tiposDemandas.forEach(tipo => {
+            const tipoFormatado = tipo.toLowerCase();
+            const demandaDiv = document.getElementById(`demanda-${tipoFormatado}`);
+            
+            if (demandaDiv) {
+                if (!tiposNosDados.has(tipo)) {
+                    demandaDiv.classList.add("opaca"); // Aplica opacidade se não existir no banco
+                } else {
+                    demandaDiv.classList.remove("opaca"); // Remove opacidade caso agora exista
+                }
+            }
+        });
+
         // Define a prioridade das classes de cor
         const prioridadeCores = {
             "andamento-recebido": 3,   // 🔴 Vermelho (Maior prioridade)
