@@ -8,42 +8,51 @@ document.addEventListener("DOMContentLoaded", () => {
             const data = await response.json();
             console.log("Dados recebidos da API:", data);
 
-            const demandasAgrupadas = agruparDemandas(data);
+            const demandasAgrupadas = agruparDemandasStatus(data);
             updateUI(demandasAgrupadas, data);
         } catch (error) {
             console.error('Erro ao buscar dados:', error);
         }
     }
 
-    function agruparDemandas(data) {
-        const agrupado = {};
+    function agruparDemandasStatus(data) {
+        // Objeto que armazenará a contagem de status por tipo de demanda
+        const agrupadoDemandaStatus = {};
 
+        // percorre todas as demandas no DB (demanda -> item)
         data.forEach(item => {
+            // Obtém o tipo da demanda; se não existir, define como "Outros"
             const tipoDemanda = item.tipo_demanda || "Outros";
+            // Normaliza o status: se não existir, assume "pendente"
             const status = item.status ? item.status.toLowerCase() : "pendente";
 
-            if (!agrupado[tipoDemanda]) {
-                agrupado[tipoDemanda] = { pendente: 0, resolvido: 0, naoResolvido: 0 };
+            // Se o tipo de demanda ainda não foi registrado, inicializa os contadores
+            if (!agrupadoDemandaStatus[tipoDemanda]) {
+                agrupadoDemandaStatus[tipoDemanda] = { pendente: 0, resolvido: 0, naoResolvido: 0 };
             }
 
-            if (status === "pendente") agrupado[tipoDemanda].pendente++;
-            else if (status === "resolvido") agrupado[tipoDemanda].resolvido++;
-            else if (["não solucionado", "nao resolvido"].includes(status)) agrupado[tipoDemanda].naoResolvido++;
+            // Incrementa o contador correspondente ao status da demanda
+            if (status === "pendente") agrupadoDemandaStatus[tipoDemanda].pendente++;
+            else if (status === "resolvido") agrupadoDemandaStatus[tipoDemanda].resolvido++;
+            else if (["não solucionado", "nao resolvido"].includes(status)) agrupadoDemandaStatus[tipoDemanda].naoResolvido++;
         });
 
-        console.log("Dados agrupados:", agrupado);
-        return agrupado;
+        // exibe no console os dados agrupados
+        console.log("Dados agrupados:", agrupadoDemandaStatus);
+        return agrupadoDemandaStatus;
     }
 
     function updateUI(demandasAgrupadas, demandas) {
         console.log("Atualizando interface...");
 
+        // Lista de tipos de demanda que serão exibidos na UI
         const tiposDemandas = [
             "Climatização", "Carro-pipa", "Poda", "Hidráulica", "Elétrica",
             "Almoxarifado", "Reparos", "Infraestrutura", "Capinação",
             "Inservíveis", "Água-mineral", "Lixo-infectado"
         ];
 
+        // Mapeamento de cada tipo de demanda para sua respectiva imagem
         const imagemPorTipo = {
             "Climatização": "img/tipo-demanda-climatizacao.png",
             "Carro-pipa": "img/tipo-demanda-carro-pipa.png",
@@ -59,26 +68,82 @@ document.addEventListener("DOMContentLoaded", () => {
             "Lixo-infectado": "img/tipo-demanda-lixo-infectado.png"
         };
 
-        tiposDemandas.forEach(tipo => {
-            const pendenteElem = document.querySelector(`#api-pendente-${tipo.toLowerCase()}`);
-            const resolvidoElem = document.querySelector(`#api-resolvido-${tipo.toLowerCase()}`);
-            const naoResolvidoElem = document.querySelector(`#api-naoresolvido-${tipo.toLowerCase()}`);
+        // Define a prioridade das classes de cor
+        const prioridadeCores = {
+            "andamento-recebido": 3,   // 🔴 Vermelho (Maior prioridade)
+            "andamento-ematendimento": 2, // 🟡 Amarelo (Média prioridade)
+            "andamento-finalizado": 1  // 🔵 Azul (Menor prioridade)
+        };
 
-            const contagem = demandasAgrupadas[tipo] || { pendente: 0, resolvido: 0, naoResolvido: 0 };
+        // Objeto auxiliar para armazenar a cor prioritária de cada tipo de demanda
+        const corPrioritariaPorDemanda = {};
 
-            if (pendenteElem) pendenteElem.textContent = contagem.pendente;
-            if (resolvidoElem) resolvidoElem.textContent = contagem.resolvido;
-            if (naoResolvidoElem) naoResolvidoElem.textContent = contagem.naoResolvido;
+        // Percorre todas as demandas para determinar a cor prioritária de cada tipo
+        demandas.forEach(demanda => {
+            const tipoDemanda = demanda.tipo_demanda || "Outros";
+            const andamento = demanda.andamento ? demanda.andamento.toLowerCase() : "recebido";
+
+            let classeAndamento = "";
+            if (andamento === "recebido") {
+                classeAndamento = "andamento-recebido";
+            } else if (andamento === "em atendimento") {
+                classeAndamento = "andamento-ematendimento";
+            } else if (andamento === "finalizado") {
+                classeAndamento = "andamento-finalizado";
+            }
+
+            // Verifica se já existe uma cor registrada para esse tipo de demanda
+            if (!corPrioritariaPorDemanda[tipoDemanda] || prioridadeCores[classeAndamento] > prioridadeCores[corPrioritariaPorDemanda[tipoDemanda]]) {
+                corPrioritariaPorDemanda[tipoDemanda] = classeAndamento;
+            }
         });
 
+        // Remove classes antigas antes de adicionar novas
+        document.querySelectorAll(".img-tipo-demanda").forEach(div => {
+            div.classList.remove("andamento-recebido", "andamento-ematendimento", "andamento-finalizado");
+        });
+
+        // Aplica a cor prioritária em cada div correspondente ao tipo de demanda
+        Object.entries(corPrioritariaPorDemanda).forEach(([tipoDemanda, classePrioritaria]) => {
+            const divImg = document.getElementById(`div-img-${tipoDemanda.toLowerCase()}`);
+            if (divImg) {
+                divImg.classList.add(classePrioritaria);
+            }
+        });
+
+        // Atualiza os contadores de status (pendente, resolvido, não resolvido) para cada tipo de demanda
+        tiposDemandas.forEach(tipo => {
+            // Seleciona os elementos HTML que exibirão os contadores de cada status
+            const pendenteElemento = document.querySelector(`#api-pendente-${tipo.toLowerCase()}`);
+            const resolvidoElemento = document.querySelector(`#api-resolvido-${tipo.toLowerCase()}`);
+            const naoResolvidoElemento = document.querySelector(`#api-naoresolvido-${tipo.toLowerCase()}`);
+
+            // Obtém a contagem do tipo de demanda atual ou usa valores padrão (caso não tenha registro desse tipo)
+            const contagem = demandasAgrupadas[tipo] || { pendente: 0, resolvido: 0, naoResolvido: 0 };
+
+            // Atualiza o conteúdo dos elementos HTML com os valores obtidos
+            if (pendenteElemento) pendenteElemento.textContent = contagem.pendente;
+            if (resolvidoElemento) resolvidoElemento.textContent = contagem.resolvido;
+            if (naoResolvidoElemento) naoResolvidoElemento.textContent = contagem.naoResolvido;
+        });
+
+        // Limpa as listas de demandas para evitar duplicação na interface
         document.getElementById("andamento-recebido").innerHTML = "";
         document.getElementById("andamento-atendimento").innerHTML = "";
         document.getElementById("andamento-finalizado").innerHTML = "";
 
+        // Percorre todas as demandas e adiciona na UI conforme o status
+        // Para cada demanda, será determinado onde ela será exibida na UI com base no seu status de andamento.
         demandas.forEach(demanda => {
+
+            // verifica se tem o campo andamento preenchido, converte pra minúsculas, em caso de não ter o campo andamento, assume "recebido"
             const andamento = demanda.andamento ? demanda.andamento.toLowerCase() : "recebido";
+
+            // define onde a demanda será adicionada
             let containerId = "";
+            // define a estilização
             let demandaClass = "";
+            // define os botões disponíveis
             let botoes = "";
 
             if (andamento === "recebido") {
@@ -95,11 +160,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 botoes = `<button>Ver resultado</button>`;
             }
 
+            // verifica se o container foi definido e coleta outras informações
             if (containerId) {
+                // Obtém a unidade de saúde correspondente a demanda
                 const unidadeSaude = demanda.us || "Unidade desconhecida";
+                // Obtém o tipo da demanda correspondente a demanda
                 const tipoDemanda = demanda.tipo_demanda || "Outros";
+                // Busca a imagem associada ao tipo da demanda no objeto imagemPorTipo
                 const imagemSrc = imagemPorTipo[tipoDemanda] || "img/default.png";
 
+                // cria dinamicamente um elemento <div> para cada demanda
                 const demandaDiv = document.createElement("div");
                 demandaDiv.classList.add("demanda", demandaClass);
                 demandaDiv.innerHTML = `
