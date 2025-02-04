@@ -1,19 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
     const API_URL = 'http://localhost:3000/ddaf-chamados';
+    const USE_LOCAL_DATA = true; // utilizar dados locais para testes
 
     async function fetchData() {
         try {
             console.log("Iniciando fetch de dados...");
-            const response = await fetch(API_URL);
-            const data = await response.json();
-            console.log("Dados recebidos da API:", data);
-
+    
+            let data;
+            if (USE_LOCAL_DATA) {
+                console.log("Usando dados locais...");
+                data = window.demandas;
+            } else {
+                console.log("Buscando dados da API...");
+                const response = await fetch(API_URL);
+                data = await response.json();
+            }
+    
+            console.log("Dados recebidos:", data);
+    
             const demandasAgrupadas = agruparDemandasStatus(data);
             updateUI(demandasAgrupadas, data);
         } catch (error) {
             console.error('Erro ao buscar dados:', error);
         }
     }
+    
 
     function agruparDemandasStatus(data) {
         // Objeto que armazenará a contagem de status por tipo de demanda
