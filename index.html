@@ -22,7 +22,7 @@
             <div class="opcao-filtro">
                 <label for="">Unidade de Saúde</label>
                 <select name="" id="">
-                    <option value=""> </option>
+                    <option value=""></option>
                     <option value="">Unidade X</option>
                     <option value="">Unidade X</option>
                     <option value="">Unidade X</option>
@@ -212,6 +212,24 @@
             <div class="demanda-andamento">
                 <div class="titulo-andamento">CHAMADOS FINALIZADOS</div>
                 <div id="andamento-finalizado" class="area-andamento"></div>
+            </div>
+            <!-- Modal (inicialmente escondido) -->
+            <div id="modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span class="close-button">&times;</span>
+                    <h2>Detalhes do Chamado</h2>
+                    <p><strong>ID:</strong> <span id="modal-id"></span></p>
+                    <p><strong>Número da Demanda:</strong> <span id="modal-n-demanda"></span></p>
+                    <p><strong>Solicitante:</strong> <span id="modal-solicitante"></span></p>
+                    <p><strong>Unidade de Saúde:</strong> <span id="modal-us"></span></p>
+                    <p><strong>Tipo de Unidade:</strong> <span id="modal-tipo-us"></span></p>
+                    <p><strong>Tipo de Demanda:</strong> <span id="modal-tipo-demanda"></span></p>
+                    <p><strong>Descrição:</strong> <span id="modal-desc-demanda"></span></p>
+                    <p><strong>Data da Demanda:</strong> <span id="modal-dt-demanda"></span></p>
+                    <p><strong>Andamento:</strong> <span id="modal-andamento"></span></p>
+                    <p><strong>Status:</strong> <span id="modal-status"></span></p>
+                    <p><strong>Data de Registro:</strong> <span id="modal-dt-registro"></span></p>
+                </div>
             </div>
         </section>  
     </main>

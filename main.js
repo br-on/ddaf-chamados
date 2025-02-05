@@ -160,6 +160,33 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("andamento-atendimento").innerHTML = "";
         document.getElementById("andamento-finalizado").innerHTML = "";
 
+// MODAL =======================================================
+        // Função para abrir e exibir os dados da demanda no modal
+        function abrirModal(demanda) {
+            // Exibindo os dados da demanda nas áreas correspondentes
+            document.getElementById("modal-id").textContent = demanda.id;
+            document.getElementById("modal-n-demanda").textContent = demanda.n_demanda;
+            document.getElementById("modal-solicitante").textContent = demanda.solicitante;
+            document.getElementById("modal-us").textContent = demanda.us;
+            document.getElementById("modal-tipo-us").textContent = demanda.tipo_us;
+            document.getElementById("modal-tipo-demanda").textContent = demanda.tipo_demanda;
+            document.getElementById("modal-desc-demanda").textContent = demanda.desc_demanda;
+            document.getElementById("modal-dt-demanda").textContent = demanda.dt_demanda;
+            document.getElementById("modal-andamento").textContent = demanda.andamento;
+            document.getElementById("modal-status").textContent = demanda.status;
+            document.getElementById("modal-dt-registro").textContent = new Date(demanda.dt_registro).toLocaleString();
+
+            // Exibindo a modal
+            const modal = document.getElementById("modal");
+            modal.style.display = "block";
+
+            // Evento para fechar o modal
+            document.querySelector(".close-button").addEventListener("click", function() {
+                modal.style.display = "none";
+            });
+        }
+//======================================================
+
         // Percorre todas as demandas e adiciona na UI conforme o status
         // Para cada demanda, será determinado onde ela será exibida na UI com base no seu status de andamento.
         demandas.forEach(demanda => {
@@ -177,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (andamento === "recebido") {
                 containerId = "andamento-recebido";
                 demandaClass = "drecebida";
-                botoes = `<button>Ver chamado</button>`;
+                botoes = `<button class="ver-chamado" data-id="${demanda.id}">Ver chamado</button>`;
             } else if (andamento === "em atendimento") {
                 containerId = "andamento-atendimento";
                 demandaClass = "dandamento";
@@ -217,6 +244,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById(containerId).prepend(demandaDiv);
             }
         });
+
+        // Evento para abrir o modal ao clicar no botão 'Ver Chamado'
+        document.addEventListener("click", function(event) {
+            if (event.target.matches(".ver-chamado")) {
+                const demandaId = event.target.dataset.id;
+                const demanda = demandas.find(d => d.id === parseInt(demandaId));
+
+                if (demanda) {
+                    abrirModal(demanda);
+                }
+            }
+        });
+
     }
 
     fetchData();
