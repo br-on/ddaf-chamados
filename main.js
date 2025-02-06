@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
             modal.style.display = "block";
 
             // Evento para fechar o modal
-            document.querySelector(".close-button").addEventListener("click", function() {
+            document.querySelector(".botão-fechar-modal").addEventListener("click", function() {
                 modal.style.display = "none";
             });
         }
