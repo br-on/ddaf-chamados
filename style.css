@@ -168,10 +168,6 @@ footer {
     height: 50%;
 }
 
-
-
-
-
 .footer-sdds4{
     margin-top: 1.5px;
     background-color: rgb(10, 78, 155);
@@ -204,6 +200,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    border-right: solid 4px #fff;
 }
 .img-tipo-demanda img {
     max-height: 90%;
@@ -380,11 +377,22 @@ footer {
         width: 100vw;
     }
     header {
+        height: 180px;
         font-size: 0.7em;
-        height: 150px;
+        min-height: 150px;
     }
     main {
         height: auto;
+    }
+    .filtros {
+        display: block;
+        padding: 5px;
+    }
+    .opcao-filtro{
+        color: aliceblue;
+        font-size: 1.3em;
+        display: inline;
+        width: 90vw;
     }
     .andamento-demandas {
         display: grid;
@@ -406,20 +414,19 @@ footer {
         border-top: solid 5px white;
     }
     .tipos-demandas {
-        height: 600px;
-        font-size: 0.7em;
-        display: grid;
-        justify-content: center;
-        grid-template-columns: 45% 45%;
-        grid-template-rows: 15% 15% 15% 15% 15% 15%;
-        row-gap: 10px;
+        height: 100vh;
+        display: inline-block;
     }
     .demanda-tipo {
-        height: 75px;
+        font-size: 0.7em;
+        height: 60px;
+        width: 100vw;
+        margin-bottom: 6px;
     }
     .demanda-andamento{
         background-color: cadetblue;
         min-height: 250px;
+        max-height: 30vh;
         margin-bottom: 15px;   
     }
     .api-info {
@@ -427,6 +434,9 @@ footer {
     }
     .modal {
         max-width: 86%;
+    }
+    .percentual {
+        display: none;
     }
 }
 @media (min-aspect-ratio: 3/2) {
