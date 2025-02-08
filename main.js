@@ -58,25 +58,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Lista de tipos de demanda que serão exibidos na UI
         const tiposDemandas = [
-            "Climatização", "Carro-pipa", "Poda", "Hidráulica", "Elétrica",
-            "Almoxarifado", "Reparos", "Infraestrutura", "Capinação",
-            "Bens-inservíveis", "Água-mineral", "Lixo-infectado"
+            "climatizacao", "carro-pipa", "poda", "hidraulica", "eletrica",
+            "almoxarifado", "reparos", "infraestrutura", "capinacao",
+            "bens-inserviveis", "agua-mineral", "lixo-infectado"
         ];
 
         // Mapeamento de cada tipo de demanda para sua respectiva imagem
         const imagemPorTipo = {
-            "Climatização": "img/tipo-demanda-climatizacao.png",
-            "Carro-pipa": "img/tipo-demanda-carro-pipa.png",
-            "Poda": "img/tipo-demanda-poda.png",
-            "Hidráulica": "img/tipo-demanda-hidráulica.png",
-            "Elétrica": "img/tipo-demanda-eletrica.png",
-            "Almoxarifado": "img/tipo-demanda-almoxarifado.png",
-            "Reparos": "img/tipo-demanda-reparos.png",
-            "Infraestrutura": "img/tipo-demanda-infraestrutura.png",
-            "Capinação": "img/tipo-demanda-capinacao.png",
-            "Inservíveis": "img/tipo-demanda-inserviveis.png",
+            "climatizacao": "img/tipo-demanda-climatizacao.png",
+            "carro-pipa": "img/tipo-demanda-carro-pipa.png",
+            "poda": "img/tipo-demanda-poda.png",
+            "hidraulica": "img/tipo-demanda-hidraulica.png",
+            "eletrica": "img/tipo-demanda-eletrica.png",
+            "almoxarifado": "img/tipo-demanda-almoxarifado.png",
+            "reparos": "img/tipo-demanda-reparos.png",
+            "infraestrutura": "img/tipo-demanda-infraestrutura.png",
+            "capinacao": "img/tipo-demanda-capinacao.png",
+            "bens-inserviveis": "img/tipo-demanda-bens-inserviveis.png",
             "agua-mineral": "img/tipo-demanda-agua-mineral.png",
-            "Lixo-infectado": "img/tipo-demanda-lixo-infectado.png"
+            "lixo-infectado": "img/tipo-demanda-lixo-infectado.png"
         };
 
         // Obter os tipos de demanda presentes nos dados
