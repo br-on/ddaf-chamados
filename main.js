@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const tiposDemandas = [
             "Climatização", "Carro-pipa", "Poda", "Hidráulica", "Elétrica",
             "Almoxarifado", "Reparos", "Infraestrutura", "Capinação",
-            "Inservíveis", "Água-mineral", "Lixo-infectado"
+            "Bens-inservíveis", "Água-mineral", "Lixo-infectado"
         ];
 
         // Mapeamento de cada tipo de demanda para sua respectiva imagem
