@@ -240,13 +240,13 @@ footer {
 }
 
 .andamento-recebido {
-    background-color: red;
+    background-color: #f74141ce;
 }
 .andamento-ematendimento{
-    background-color: yellow;
+    background-color: #ebbb20e8;
 }
 .andamento-finalizado {
-    background-color: blue;
+    background-color: #0084ffd2;
 }
 .opaca {
     opacity: 0.25; 
@@ -414,12 +414,12 @@ footer {
         border-top: solid 5px white;
     }
     .tipos-demandas {
-        height: 100vh;
+        max-height: 100vh;
         display: inline-block;
     }
     .demanda-tipo {
         font-size: 0.7em;
-        height: 60px;
+        height: 55px;
         width: 100vw;
         margin-bottom: 6px;
     }
