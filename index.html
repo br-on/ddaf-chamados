@@ -13,12 +13,14 @@
     <header>
        <center><h1>Radar de Monitoramento de Chamados - DDAF</h1></center> 
         <section class="filtros">
-            <div class="opcao-filtro">
-                <label for="">Início</label>
-                <input type="date">
-                <label for="">Fim</label>
-                <input type="date">
-            </div><br>
+            <div class="opcao-filtro-datas">
+                <div><label for="inicio">Período:</label></div><br>
+                <div class="input-group">
+                    <input type="date" id="inicio">
+                    <span>até</span>
+                    <input type="date" id="fim">
+                </div>
+            </div>    
             <div>
                 <div class="opcao-filtro">
                 <label for="">Unidade de Saúde</label>
@@ -40,7 +42,7 @@
                     <option value="">Demanda X</option>
                 </select>
                 </div>
-            /div>
+            </div>
         </section>
     </header>
     <main>
@@ -222,7 +224,7 @@
                         <span class="botão-fechar-modal"><span class="x">&times;</span></span>
                         <span class="botão-atender-modal">Atender <span class="seta">&rarr;</span> </span>
                     </div>
-                    <center><h2>Detalhes do Chamado</h2>´</center>
+                    <center><h2>Detalhes do Chamado</h2></center>
                     <div class="modal-form-id">
                         <p><span class="modal-form-campo"><strong>ID:</strong></span> <span id="modal-id" class="modal-form-valor"></span></p>
                         <p><span class="modal-form-campo"><strong>Número da Demanda:</strong></span> <span id="modal-n-demanda" class="modal-form-valor"></span></p>
@@ -248,8 +250,7 @@
             </div>
         </section>  
     </main>
-    <section class="percentual">
-        
+    <section class="percentual">      
         <div class="relatorio-geral">
             Relatórios em desenvolvimento
         </div>
