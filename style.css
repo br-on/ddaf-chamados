@@ -76,14 +76,14 @@ footer {
     overflow-y: auto;
 }
 .titulo-andamento {
+    color: #F8E3A3;
     display: flex;
     align-items: center;
     justify-content: center;
     border-bottom: solid 2px rgb(217, 221, 236);
-    font-size: 1em;
-    background-color: rgb(255, 255, 255);
-
-    height: 5%;
+    font-size: 1.2em;
+    background-color: #2E4C58;
+    height: 6%;
 }
 .area-andamento {
     height: 95%;
@@ -677,6 +677,6 @@ footer {
         justify-content: center;
     }
     .titulo-andamento {
-        font-size: 0.67em;
+        font-size: 1em;
     }
 }
