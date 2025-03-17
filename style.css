@@ -555,6 +555,44 @@ footer {
     .percentual {
         display: none;
     }
+    /* Responsividade para dispositivos móveis */
+    .modal {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .modal-content {
+        font-size: 14px;
+    }
+
+    .modal-content h2 {
+        font-size: 1.5em;
+    }
+
+    .modal-btt {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .botão-fechar-modal {
+        width: 10%;
+        text-align: center;
+    }
+    .botão-atender-modal {
+        width: 100%;
+        text-align: center;
+    }
+
+    .modal-form-us,
+    .modal-form-demanda {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .modal-form-status {
+        flex-direction: column;
+        text-align: center;
+    }
 }
 @media (min-aspect-ratio: 3/2) {
     body {
