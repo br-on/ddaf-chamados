@@ -413,7 +413,7 @@ footer {
 }
 
 /* Botão de Atender */
-.botão-atender-modal {
+.botão-atender-modal, .botão-finalizar-modal {
     font-size: 1.2em;
     font-weight: bold;
     color: white;
@@ -425,7 +425,7 @@ footer {
     transition: background 0.3s ease;
 }
 
-.botão-atender-modal:hover {
+.botão-atender-modal:hover, .botão-finalizar-modal:hover {
     background-color: #157A52;
 }
 
@@ -484,6 +484,99 @@ footer {
     font-weight: bold;
     font-family: 'Arial', sans-serif;
 }
+/* Estilização para a área de finalização */
+#modal-finalizar {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Título da seção de finalização */
+#modal-finalizar h3 {
+    font-size: 1.6em;
+    color: #F8E3A3;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Estilo dos labels dentro da área de finalização */
+#modal-finalizar label {
+    font-size: 1.2em;
+    color: #F8E3A3;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+
+
+/* Estilo do campo select (Status da Finalização) */
+#modal-status-finalizacao {
+    font-size: 1.1em;
+    padding: 8px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #F8E3A3;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* Estilo do campo de observação (textarea) */
+.modal-finalizar-observação {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#modal-observacao {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 6px;
+    color: #E3E3E3;
+    font-size: 1.1em;
+    resize: vertical;
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    /* Ajustando o tamanho do modal para telas menores */
+    .modal {
+        width: 90%;
+        padding: 15px;
+    }
+
+    /* Ajustando o tamanho do título */
+    #modal-finalizar h3 {
+        font-size: 1.4em;
+    }
+
+    /* Ajustando o tamanho dos labels e campos */
+    #modal-finalizar label {
+        font-size: 1.1em;
+    }
+
+    #modal-status-finalizacao,
+    #modal-observacao {
+        font-size: 1em;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Ajustando ainda mais para dispositivos móveis muito pequenos */
+    #modal-finalizar h3 {
+        font-size: 1.2em;
+    }
+
+    #modal-status-finalizacao,
+    #modal-observacao {
+        font-size: 0.9em;
+    }
+}
+
+
 
 
 
@@ -578,7 +671,7 @@ footer {
         width: 10%;
         text-align: center;
     }
-    .botão-atender-modal {
+    .botão-atender-modal, .botão-finalizar-modal {
         width: 100%;
         text-align: center;
     }

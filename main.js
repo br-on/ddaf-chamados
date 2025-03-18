@@ -198,9 +198,32 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("andamento-atendimento").innerHTML = "";
         document.getElementById("andamento-finalizado").innerHTML = "";
 
-// MODAL =======================================================
+        // Evento para abrir o modal
+        document.addEventListener("click", function(event) {
+            // Verificando se o botão clicado é 'Ver Chamado'
+            if (event.target.matches(".ver-chamado")) {
+                const demandaId = event.target.dataset.id;
+                const demanda = demandas.find(d => d.id === parseInt(demandaId));
+
+                if (demanda) {
+                    abrirModal(demanda, "atender");  // Passa "atender" para mostrar o botão Atender
+                }
+            }
+
+            // Verificando se o botão clicado é 'Finalizar Chamado'
+            if (event.target.matches(".finalizar-chamado")) {
+                const demandaId = event.target.dataset.id;
+                const demanda = demandas.find(d => d.id === parseInt(demandaId));
+
+                if (demanda) {
+                    abrirModal(demanda, "finalizar");  // Passa "finalizar" para mostrar o botão Finalizar
+                }
+            }
+        });
+
+// MODAL =======================================================     
         // Função para abrir e exibir os dados da demanda no modal
-        function abrirModal(demanda) {
+        function abrirModal(demanda, tipoBotao) {
             // Exibindo os dados da demanda nas áreas correspondentes
             document.getElementById("modal-id").textContent = demanda.id;
             document.getElementById("modal-n-demanda").textContent = demanda.n_demanda;
@@ -210,35 +233,92 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("modal-tipo-demanda").textContent = demanda.tipo_demanda;
             document.getElementById("modal-desc-demanda").textContent = demanda.desc_demanda;
             document.getElementById("modal-dt-demanda").textContent = demanda.dt_demanda;
+            document.getElementById("modal-dt-registro").textContent = new Date(demanda.dt_registro).toLocaleString();
+
+            // Exibindo o andamento e o status
             document.getElementById("modal-andamento").textContent = demanda.andamento;
             document.getElementById("modal-status").textContent = demanda.status;
-            document.getElementById("modal-dt-registro").textContent = new Date(demanda.dt_registro).toLocaleString();
 
             // Exibindo a modal
             const modal = document.getElementById("modal");
-            modal.style.display = "block";
+            modal.style.display = "block";  // Exibe o modal
+
+            // Mostrar ou esconder a área de finalização dependendo do andamento do chamado
+            const modalFinalizar = document.getElementById("modal-finalizar");
+            const modalResultado = document.getElementById("modal-resultado");
+
+            // Se o chamado estiver em andamento, mostra a área de finalização
+            if (demanda.andamento.toLowerCase() !== "finalizado") {
+                modalFinalizar.style.display = "block";
+                modalResultado.style.display = "none";
+            } else {
+                // Se o chamado estiver finalizado, mostra o resultado da finalização
+                modalFinalizar.style.display = "none";
+                modalResultado.style.display = "block";
+
+                // Preenche os detalhes da finalização
+                document.getElementById("modal-status-final").textContent = demanda.status_final || "Não definido";
+                document.getElementById("modal-observacao-final").textContent = demanda.observacao || "Nenhuma observação fornecida.";
+            }
+
+            // Mostrar o botão correto (Atender ou Finalizar Chamado) dependendo do tipoBotao
+            const botaoAtender = document.querySelector(".botão-atender-modal");
+            const botaoFinalizar = document.querySelector(".botão-finalizar-modal");
+
+            if (tipoBotao === "finalizar") {
+                // Exibe o botão Finalizar Chamado e esconde o botão Atender
+                botaoAtender.style.display = "none";
+                botaoFinalizar.style.display = "inline-block";  // Exibe o botão Finalizar Chamado
+                document.getElementById("modal-finalizar").style.display = "block";  // Exibe a área de finalização
+            } else {
+                // Exibe o botão Atender e esconde o botão Finalizar Chamado
+                botaoAtender.style.display = "inline-block";
+                botaoFinalizar.style.display = "none";
+                document.getElementById("modal-finalizar").style.display = "none";  // Esconde a área de finalização
+            }            
 
             // Evento para fechar o modal
             document.querySelector(".botão-fechar-modal").addEventListener("click", function() {
-                modal.style.display = "none";
+                modal.style.display = "none";  // Esconde o modal
+            });
+
+            // Evento para finalizar o chamado
+            document.getElementById("btn-finalizar").addEventListener("click", function() {
+                const statusFinalizacao = document.getElementById("modal-status-finalizacao").value;
+                const observacao = document.getElementById("modal-observacao").value;
+
+                // Atualizar os dados da demanda com os novos status e observação
+                demanda.status = statusFinalizacao;
+                demanda.status_final = statusFinalizacao; // Definindo o status final
+                demanda.observacao = observacao; // Salvando a observação
+
+                // Atualizando a UI ou a API para salvar as mudanças (aqui você pode fazer uma chamada para a API)
+                atualizarChamado(demanda);
+
+                // Atualizar a UI do modal com o novo status final
+                document.getElementById("modal-status-final").textContent = statusFinalizacao;
+                document.getElementById("modal-observacao-final").textContent = observacao;
+
+                // Atualizar o modal para mostrar o resultado da finalização
+                modalFinalizar.style.display = "none";
+                modalResultado.style.display = "block";
             });
         }
+      
 //======================================================
 
         // Percorre todas as demandas e adiciona na UI conforme o status
         // Para cada demanda, será determinado onde ela será exibida na UI com base no seu status de andamento.
         demandas.forEach(demanda => {
 
-            // verifica se tem o campo andamento preenchido, converte pra minúsculas, em caso de não ter o campo andamento, assume "recebido"
+            // Verifica o andamento da demanda
             const andamento = demanda.andamento ? demanda.andamento.toLowerCase() : "recebido";
-
-            // define onde a demanda será adicionada
+        
+            // Define onde a demanda será adicionada e outros detalhes
             let containerId = "";
-            // define a estilização
             let demandaClass = "";
-            // define os botões disponíveis
             let botoes = "";
-
+        
             if (andamento === "recebido") {
                 containerId = "andamento-recebido";
                 demandaClass = "drecebida";
@@ -246,23 +326,21 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (andamento === "em atendimento") {
                 containerId = "andamento-atendimento";
                 demandaClass = "dandamento";
-                botoes = `<button>Finalizar</button>`;
+                botoes = `<button class="finalizar-chamado" data-id="${demanda.id}">Finalizar</button>`;
             } else if (andamento === "finalizado") {
                 containerId = "andamento-finalizado";
                 demandaClass = "dfinalizada";
                 botoes = `<button>Ver resultado</button>`;
             }
-
-            // verifica se o container foi definido e coleta outras informações
+        
+            // Verifica se o container foi definido
             if (containerId) {
-                // Obtém a unidade de saúde correspondente a demanda
+                // Obtém a unidade de saúde e tipo de demanda
                 const unidadeSaude = demanda.us || "Unidade desconhecida";
-                // Obtém o tipo da demanda correspondente a demanda
                 const tipoDemanda = demanda.tipo_demanda || "Outros";
-                // Busca a imagem associada ao tipo da demanda no objeto imagemPorTipo
                 const imagemSrc = imagemPorTipo[tipoDemanda] || "img/default.png";
-
-                // cria dinamicamente um elemento <div> para cada demanda
+        
+                // Cria o elemento <div> para cada demanda
                 const demandaDiv = document.createElement("div");
                 demandaDiv.classList.add("demanda", demandaClass);
                 demandaDiv.innerHTML = `
@@ -278,22 +356,31 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                     </div>
                 `;
-
+        
+                // Adiciona a nova demanda ao container
                 document.getElementById(containerId).prepend(demandaDiv);
-            }
-        });
-
-        // Evento para abrir o modal ao clicar no botão 'Ver Chamado'
-        document.addEventListener("click", function(event) {
-            if (event.target.matches(".ver-chamado")) {
-                const demandaId = event.target.dataset.id;
-                const demanda = demandas.find(d => d.id === parseInt(demandaId));
-
-                if (demanda) {
-                    abrirModal(demanda);
+        
+                // Adiciona evento de clique para o botão "Finalizar"
+                const finalizarButton = demandaDiv.querySelector(".finalizar-chamado");
+                if (finalizarButton) {
+                    finalizarButton.addEventListener("click", function() {
+                        // Exibe o modal de finalização
+                        abrirModal(demanda);
+        
+                        // Exibe a seção de finalização no modal e esconde a de resultado
+                        const modalFinalizar = document.getElementById("modal-finalizar");
+                        const modalResultado = document.getElementById("modal-resultado");
+        
+                        modalFinalizar.style.display = "block";  // Mostrar a parte de finalização
+                        modalResultado.style.display = "none";  // Esconder a parte de resultado
+        
+                        // Limpar os campos de status final e observação
+                        document.getElementById("modal-status-finalizacao").value = "";  // Limpar o campo de status final
+                        document.getElementById("modal-observacao").value = "";  // Limpar o campo de observação
+                    });
                 }
             }
-        });
+        });     
 
     }
 

@@ -23,24 +23,53 @@
             </div>    
             <div>
                 <div class="opcao-filtro">
-                <label for="">Unidade de Saúde</label>
-                <select name="" id="">
-                    <option value=""></option>
-                    <option value="">Unidade X</option>
-                    <option value="">Unidade X</option>
-                    <option value="">Unidade X</option>
-                    <option value="">Unidade X</option>
-                </select>
+                <label for="unidade-saude">Unidade de Saúde</label>
+                <select name="unidade-saude" id="unidade-saude">
+                    <option value="" disabled selected>Selecione uma unidade</option>
+                    <option value="USF+ MISTA OLINTO OLEVEIRA">USF+ MISTA OLINTO OLEVEIRA</option>
+                    <option value="USF+ CARANGUEJO">USF+ CARANGUEJO</option>
+                    <option value="USF+ VILA ARRAES">USF+ VILA ARRAES</option>
+                    <option value="USF+ JARDIM TERESÓPOLIS">USF+ JARDIM TERESÓPOLIS</option>
+                    <option value="USF+ EMOCY KRAUSE">USF+ EMOCY KRAUSE</option>
+                    <option value="USF AMAURY DE MEDEIROS">USF AMAURY DE MEDEIROS</option>
+                    <option value="USF COSME E DAMIÃO">USF COSME E DAMIÃO</option>
+                    <option value="USF BARREIRAS">USF BARREIRAS</option>
+                    <option value="USF BRASILIT">USF BRASILIT</option>
+                    <option value="USF ROSA SELVAGEM">USF ROSA SELVAGEM</option>
+                    <option value="USF SITIO WANDERLEY">USF SITIO WANDERLEY</option>
+                    <option value="USF VILA UNIÃO">USF VILA UNIÃO</option>
+                    <option value="USF SKYLAB">USF SKYLAB</option>
+                    <option value="USF CASARÃO DO CORDEIRO">USF CASARÃO DO CORDEIRO</option>
+                    <option value="USF ENGENHO DO MEIO">USF ENGENHO DO MEIO</option>
+                    <option value="USF SITIO DA PALMEIRAS">USF SITIO DA PALMEIRAS</option>
+                    <option value="USF SITIO CARDOSO">USF SITIO CARDOSO</option>
+                    <option value="USF COSIROF">USF COSIROF</option>
+                    <option value="USF SINOS">USF SINOS</option>
+                    <option value="USF MACAE">USF MACAE</option>
+                    <option value="USF VIETNÃ">USF VIETNÃ</option>
+                    <option value="UBT JOAQUIM CAVALCANTE">UBT JOAQUIM CAVALCANTE</option>
+                    <option value="UBT DR. JOSE DUSTAN">UBT DR. JOSE DUSTAN</option>
+                    <option value="CAPS EULÂMPIO">CAPS EULÂMPIO</option>
+                    <option value="CAPS ESPAÇO VIDA">CAPS ESPAÇO VIDA</option>
+                </select>                    
                 </div>
                 <div class="opcao-filtro">
-                <label for="">Tipo de demanda</label>
-                <select name="" id="">
-                    <option value=""> </option>
-                    <option value="">Demanda X</option>
-                    <option value="">Demanda X</option>
-                    <option value="">Demanda X</option>
-                    <option value="">Demanda X</option>
-                </select>
+                <label for="tipo-demanda">Tipo de demanda</label>
+                <select name="tipo-demanda" id="tipo-demanda">
+                    <option value="" disabled selected>Selecione um tipo de demanda</option>
+                    <option value="climatizacao">Climatização</option>
+                    <option value="carro-pipa">Carro-Pipa</option>
+                    <option value="poda">Poda</option>
+                    <option value="hidraulica">Hidráulica</option>
+                    <option value="eletrica">Elétrica</option>
+                    <option value="almoxarifado">Almoxarifado</option>
+                    <option value="reparos">Reparos</option>
+                    <option value="infraestrutura">Infraestrutura</option>
+                    <option value="capinacao">Capinação</option>
+                    <option value="bens-inserviveis">Bens Inservíveis</option>
+                    <option value="agua-mineral">Água Mineral</option>
+                    <option value="lixo-infectado">Lixo Infectado</option>
+                </select>                    
                 </div>
             </div>
         </section>
@@ -217,12 +246,15 @@
                 <div class="titulo-andamento">CHAMADOS FINALIZADOS</div>
                 <div id="andamento-finalizado" class="area-andamento"></div>
             </div>
-            <!-- Modal (inicialmente escondido) -->
+           <!-- Modal (inicialmente escondido) -->
             <div id="modal" class="modal" style="display: none;">
                 <div class="modal-content">
                     <div class="modal-btt">
                         <span class="botão-fechar-modal"><span class="x">&times;</span></span>
-                        <span class="botão-atender-modal">Atender <span class="seta">&rarr;</span> </span>
+                        <!-- Botão Atender, inicialmente visível -->
+                        <span class="botão-atender-modal">Atender <span class="seta">&rarr;</span></span>
+                        <!-- Botão Finalizar Chamado, inicialmente oculto -->
+                        <span id="btn-finalizar" class="botão-finalizar-modal" style="display: none;">Finalizar Chamado</span>
                     </div>
                     <center><h2>Detalhes do Chamado</h2></center>
                     <div class="modal-form-id">
@@ -246,8 +278,38 @@
                         <p><strong>Andamento:</strong> <span id="modal-andamento"></span></p>
                         <p><strong>Status:</strong> <span id="modal-status"></span></p>
                     </div>
+
+                    <!-- Área de Finalização (somente se não estiver finalizado) -->
+                    <div id="modal-finalizar" style="display: none;">
+                        <hr>
+                        <h3 class="modal-form-id">Finalizar Chamado</h3>
+
+                        <div class="modal-form-status">
+                            <label for="modal-status-finalizacao" class="modal-form-campo"><strong>Status da Finalização:</strong></label>
+                            <select id="modal-status-finalizacao" class="modal-form-valor">
+                                <option value="resolvido">Resolvido</option>
+                                <option value="nao resolvido">Não Resolvido</option>
+                            </select>
+                        </div>
+
+                        <div class="modal-form-status">
+                            <div class="modal-finalizar-observação">
+                                <label for="modal-observacao" class="modal-form-campo"><strong>Observação:</strong></label>
+                                <textarea id="modal-observacao" class="modal-form-valor" rows="3" placeholder="Digite uma observação..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resultado da Finalização (somente se já estiver finalizado) -->
+                    <div id="modal-resultado" style="display: none;">
+                        <hr>
+                        <h3>Detalhes da Finalização</h3>
+                        <p><strong>Status Final:</strong> <span id="modal-status-final"></span></p>
+                        <p><strong>Observação:</strong> <span id="modal-observacao-final"></span></p>
+                    </div>
                 </div>
             </div>
+
         </section>  
     </main>
     <section class="percentual">      
