@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const API_URL = 'http://localhost:3000/ddaf-chamados';
-    const USE_LOCAL_DATA = true; // utilizar dados locais para testes
+    const USE_LOCAL_DATA = false; // utilizar dados locais para testes
 
     async function fetchData() {
         try {
@@ -24,8 +24,46 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error('Erro ao buscar dados:', error);
         }
     }
-    
 
+    // Função para atualizar o andamento
+    document.querySelector(".botão-atender-modal").addEventListener("click", async function() {
+        const modalId = document.getElementById("modal-id").textContent.trim(); // Obtém o ID do chamado
+        const url = `http://localhost:3000/ddaf-chamados/${modalId}`; // URL do backend
+
+        // Dados a serem enviados para o backend
+        const data = {
+            andamento: "em atendimento"
+        };
+
+        try {
+            // Enviar a requisição PUT
+            const response = await fetch(url, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+
+            // Verifica se a requisição foi bem-sucedida
+            if (!response.ok) {
+                throw new Error("Erro ao atualizar o andamento");
+            }
+
+            const result = await response.json();
+            alert(result.message);  // Exibe a resposta do servidor
+
+            // Fechar o modal
+            document.getElementById("modal").style.display = "none";
+        } catch (error) {
+            console.error("Erro ao atender:", error);
+            alert("Erro ao atender o chamado.");
+        }
+
+        fetchData();
+
+    });
+    
     function agruparDemandasStatus(data) {
         // Objeto que armazenará a contagem de status por tipo de demanda
         const agrupadoDemandaStatus = {};

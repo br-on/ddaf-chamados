@@ -10,19 +10,14 @@ app.use(express.json());
 // Conectando ao Supabase
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
 
-app.get("/", (req, res) => {
-    res.send("API rodando com Supabase!");
-});
-
+// Buscar todos os chamados
 app.get("/ddaf-chamados", async (req, res) => {
     try {
         const { data, error } = await supabase
-            .from('ddaf-chamados')
-            .select('*');
+            .from("ddaf-chamados")
+            .select("*");
 
-        if (error) {
-            return res.status(400).json({ error: error.message });
-        }
+        if (error) return res.status(400).json({ error: error.message });
 
         res.json(data);
     } catch (error) {
@@ -31,67 +26,55 @@ app.get("/ddaf-chamados", async (req, res) => {
     }
 });
 
+// Atualizar o andamento de um chamado
+app.put("/ddaf-chamados/:id", async (req, res) => {
+    const { id } = req.params;
+    const { andamento } = req.body;  // O corpo da requisição tem o campo "andamento"
+
+    try {
+        const { data, error } = await supabase
+            .from("ddaf-chamados")
+            .update({ andamento }) // Atualiza o campo "andamento"
+            .eq("id", id); // Filtra pelo id do chamado
+
+        if (error) return res.status(400).json({ error: error.message });
+
+        res.json({ message: "Andamento atualizado com sucesso", data });
+    } catch (error) {
+        console.error("Erro ao atualizar andamento:", error);
+        res.status(500).json({ error: "Erro interno no servidor" });
+    }
+});
+
+
+// Autenticação de usuário
 app.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        // Autenticando o usuário no Supabase
         const { data, error } = await supabase.auth.signInWithPassword({
-            email: email,
-            password: password
+            email,
+            password,
         });
 
-        // Verificando se houve erro
-        if (error) {
-            console.error("Erro ao autenticar:", error.message);
-            return res.status(400).json({ error: error.message });
-        }
+        if (error) return res.status(400).json({ error: error.message });
 
-        // Verificando se o token está presente na resposta
         if (data && data.session && data.session.access_token) {
             return res.json({
                 token: data.session.access_token,
                 user: data.user,
             });
         } else {
-            console.error("Erro: Token não encontrado na resposta.");
             return res.status(500).json({ error: "Erro ao obter o token" });
         }
-
     } catch (error) {
         console.error("Erro ao fazer login:", error);
         return res.status(500).json({ error: "Erro interno no servidor" });
     }
 });
 
-
-// Rota protegida (exemplo)
-app.get("/dashboard", async (req, res) => {
-    const token = req.headers["authorization"];
-
-    if (!token) {
-        return res.status(401).json({ error: "Token não fornecido" });
-    }
-
-    try {
-        // Validando o token JWT (caso necessário, usando a API de autenticação do Supabase)
-        const { user, error } = await supabase.auth.api.getUser(token.replace("Bearer ", ""));
-
-        if (error) {
-            return res.status(401).json({ error: "Token inválido" });
-        }
-
-        res.json({
-            message: "Bem-vindo ao seu painel!",
-            user,
-        });
-
-    } catch (error) {
-        console.error("Erro ao validar o token:", error);
-        return res.status(500).json({ error: "Erro interno no servidor" });
-    }
-});
-
-app.listen(3000, () => {
-    console.log("Servidor rodando na porta 3000");
+// Iniciando o servidor
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
 });
