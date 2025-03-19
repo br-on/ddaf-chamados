@@ -26,25 +26,62 @@ app.get("/ddaf-chamados", async (req, res) => {
     }
 });
 
-// Atualizar o andamento de um chamado
+// Atualizar o andamento recebimento
 app.put("/ddaf-chamados/:id", async (req, res) => {
     const { id } = req.params;
-    const { andamento } = req.body;  // O corpo da requisição tem o campo "andamento"
+    const { andamento, status, observacao } = req.body; // Agora recebe os três campos
 
     try {
         const { data, error } = await supabase
             .from("ddaf-chamados")
-            .update({ andamento }) // Atualiza o campo "andamento"
-            .eq("id", id); // Filtra pelo id do chamado
+            .update({
+                andamento,
+                status,
+                observacao
+            })
+            .eq("id", id); // Filtra pelo ID do chamado
 
-        if (error) return res.status(400).json({ error: error.message });
+        if (error) {
+            console.error("Erro no Supabase:", error.message);
+            return res.status(400).json({ error: error.message });
+        }
 
-        res.json({ message: "Andamento atualizado com sucesso", data });
+        res.json({ message: "Chamado atualizado com sucesso", data });
     } catch (error) {
-        console.error("Erro ao atualizar andamento:", error);
+        console.error("Erro interno no servidor:", error);
         res.status(500).json({ error: "Erro interno no servidor" });
     }
 });
+
+
+// Atualizar o andamento finalização
+/* app.put("/ddaf-chamados/:id", async (req, res) => {
+    const { id } = req.params;
+    const { andamento, status, observacao } = req.body;
+
+    console.log("Dados recebidos no backend:", req.body); // Verifica o que o backend está recebendo
+
+    try {
+        const { data, error } = await supabase
+            .from("ddaf-chamados")
+            .update({
+                andamento,
+                status,
+                observacao: observacao || null
+            })
+            .eq("id", id);
+
+        if (error) {
+            console.error("Erro no Supabase:", error.message);
+            return res.status(400).json({ error: error.message });
+        }
+
+        res.json({ message: "Chamado finalizado com sucesso", data });
+    } catch (error) {
+        console.error("Erro ao finalizar chamado:", error);
+        res.status(500).json({ error: "Erro interno no servidor" });
+    }
+}); */
 
 
 // Autenticação de usuário
