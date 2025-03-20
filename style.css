@@ -522,6 +522,11 @@ footer {
     margin-bottom: 15px;
 }
 
+.modal-form-valor option {
+    color: black;
+    font-weight: bold;
+}
+
 /* Estilo do campo de observação (textarea) */
 .modal-finalizar-observação {
     display: flex;
@@ -531,13 +536,19 @@ footer {
 
 #modal-observacao {
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.305);
     border: none;
     border-radius: 6px;
-    color: #E3E3E3;
+    color: #0f0f0f;
     font-size: 1.1em;
     resize: vertical;
+    padding-left: 10px;
 }
+
+#modal-resultado h3 {
+    color: #F8E3A3;
+    
+} 
 
 /* Responsividade para dispositivos móveis */
 @media (max-width: 768px) {

@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Função para atualizar o andamento
+    // atualizar o andamento - receber
     document.querySelector(".botão-atender-modal").addEventListener("click", async function() {
         const modalId = document.getElementById("modal-id").textContent.trim(); // Obtém o ID do chamado
         const url = `http://localhost:3000/ddaf-chamados/${modalId}`; // URL do backend
@@ -62,6 +62,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
         fetchData();
 
+    });
+
+    // atualizar o andamento - finalizar
+    document.querySelector("#btn-finalizar").addEventListener("click", async function() {
+        const modalId = document.getElementById("modal-id").textContent.trim(); // Obtém o ID do chamado
+        const statusSelecionado = document.getElementById("modal-status-finalizacao").value; // Pega o status selecionado
+        const observacao = document.getElementById("modal-observacao").value.trim(); // Pega a observação digitada
+    
+        const url = `http://localhost:3000/ddaf-chamados/${modalId}`;
+    
+        // Dados a serem enviados para o backend
+        const data = {
+            andamento: "finalizado",
+            status: statusSelecionado,
+            observacao: observacao.length > 0 ? observacao : "Sem observação"
+        };
+    
+        try {
+            const response = await fetch(url, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+    
+            if (!response.ok) {
+                throw new Error("Erro ao atualizar chamado");
+            }
+    
+            const result = await response.json();
+            alert(result.message); // Exibe mensagem de sucesso
+    
+            // Fechar o modal
+            document.getElementById("modal").style.display = "none";
+        } catch (error) {
+            console.error("Erro ao finalizar chamado:", error);
+            alert("Erro ao finalizar o chamado.");
+        }
+
+        fetchData();
     });
     
     function agruparDemandasStatus(data) {
@@ -282,27 +323,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 modal.style.display = "none";  // Esconde o modal
             });
 
-            // Evento para finalizar o chamado
-            document.getElementById("btn-finalizar").addEventListener("click", function() {
-                const statusFinalizacao = document.getElementById("modal-status-finalizacao").value;
-                const observacao = document.getElementById("modal-observacao").value;
-
-                // Atualizar os dados da demanda com os novos status e observação
-                demanda.status = statusFinalizacao;
-                demanda.status_final = statusFinalizacao; // Definindo o status final
-                demanda.observacao = observacao; // Salvando a observação
-
-                // Atualizando a UI ou a API para salvar as mudanças (aqui você pode fazer uma chamada para a API)
-                atualizarChamado(demanda);
-
-                // Atualizar a UI do modal com o novo status final
-                document.getElementById("modal-status-final").textContent = statusFinalizacao;
-                document.getElementById("modal-observacao-final").textContent = observacao;
-
-                // Atualizar o modal para mostrar o resultado da finalização
-                modalFinalizar.style.display = "none";
-                modalResultado.style.display = "block";
-            });
         }
       
 //======================================================
@@ -330,7 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (andamento === "finalizado") {
                 containerId = "andamento-finalizado";
                 demandaClass = "dfinalizada";
-                botoes = `<button>Ver resultado</button>`;
+                botoes = `<button class="resultado-chamado" data-id="${demanda.id}">Ver resultado</button>`;
             }
         
             // Verifica se o container foi definido
@@ -379,6 +399,28 @@ document.addEventListener("DOMContentLoaded", () => {
                         document.getElementById("modal-observacao").value = "";  // Limpar o campo de observação
                     });
                 }
+
+/////////////////// TRABALHANDO AQUI /////////////////////////////////////////////////////////////////////////////////
+                // Adiciona evento de clique para o botão "Ver resultado"
+                const resultadoButton = demandaDiv.querySelector(".resultado-chamado");
+                if (resultadoButton) {
+                    resultadoButton.addEventListener("click", function() {
+                        // Exibe o modal de finalização
+                        abrirModal(demanda);
+        
+                        // Exibe a seção de finalização no modal e esconde a de resultado
+                        const modalFinalizar = document.getElementById("modal-finalizar");
+                        const modalResultado = document.getElementById("modal-resultado");
+                        const botaoAtender = document.querySelector(".botão-atender-modal");
+                        const statusFinal = document.getElementById("status-final");
+        
+                        modalFinalizar.style.display = "none";  
+                        modalResultado.style.display = "block"; 
+                        botaoAtender.style.display = "none"; 
+                        statusFinal.style.display = "none";
+                    });
+                }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             }
         });     
 
