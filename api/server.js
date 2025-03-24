@@ -10,12 +10,34 @@ app.use(express.json());
 // Conectando ao Supabase
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
 
-// Buscar todos os chamados
+// Buscar todos os chamados ou aplica os filtros
 app.get("/ddaf-chamados", async (req, res) => {
     try {
-        const { data, error } = await supabase
-            .from("ddaf-chamados")
-            .select("*");
+        const { unidade_saude, tipo_demanda, inicio, fim } = req.query;
+
+        let query = supabase.from("ddaf-chamados").select("*");
+
+        // Filtrando pela Unidade de Saúde
+        if (unidade_saude) {
+            query = query.eq("us", unidade_saude); // Compara a coluna 'us' (Unidade de Saúde)
+        }
+        
+        // Filtrando pelo Tipo de Demanda
+        if (tipo_demanda) {
+            query = query.eq("tipo_demanda", tipo_demanda); // Compara a coluna 'tipo_demanda'
+        }
+
+        // Filtrando pelo Período (Data de Início)
+        if (inicio) {
+            query = query.gte("dt_registro", inicio); // 'gte' significa "maior ou igual a" para 'dt_registro'
+        }
+
+        // Filtrando pelo Período (Data de Fim)
+        if (fim) {
+            query = query.lte("dt_registro", fim); // 'lte' significa "menor ou igual a" para 'dt_registro'
+        }
+
+        const { data, error } = await query;
 
         if (error) return res.status(400).json({ error: error.message });
 
@@ -25,6 +47,7 @@ app.get("/ddaf-chamados", async (req, res) => {
         res.status(500).json({ error: "Erro interno no servidor" });
     }
 });
+
 
 // Atualizar o andamento recebimento
 app.put("/ddaf-chamados/:id", async (req, res) => {

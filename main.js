@@ -6,13 +6,32 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             console.log("Iniciando fetch de dados...");
     
+            // Coleta os valores dos filtros
+            const unidadeSaude = document.getElementById('unidade-saude').value;
+            const tipoDemanda = document.getElementById('tipo-demanda').value;
+            const inicio = document.getElementById('inicio').value;
+            const fim = document.getElementById('fim').value;
+    
+            let queryString = "";
+    
+            // Construa a query string com os filtros, se houver
+            if (unidadeSaude) queryString += `unidade_saude=${unidadeSaude}&`;
+            if (tipoDemanda) queryString += `tipo_demanda=${tipoDemanda}&`;
+            if (inicio) queryString += `inicio=${inicio}&`;
+            if (fim) queryString += `fim=${fim}&`;
+    
+            // Remove o último '&' da string
+            queryString = queryString.slice(0, -1);
+    
+            const url = `${API_URL}?${queryString}`;  // Adiciona os filtros à URL da API
+    
             let data;
             if (USE_LOCAL_DATA) {
                 console.log("Usando dados locais...");
                 data = window.demandas;
             } else {
                 console.log("Buscando dados da API...");
-                const response = await fetch(API_URL);
+                const response = await fetch(url);  // Faz a requisição com os filtros
                 data = await response.json();
             }
     
@@ -24,6 +43,18 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error('Erro ao buscar dados:', error);
         }
     }
+
+    // Event listeners para os filtros
+    const filtroUnidadeSaude = document.getElementById('unidade-saude');
+    const filtroTipoDemanda = document.getElementById('tipo-demanda');
+    const filtroInicio = document.getElementById('inicio');
+    const filtroFim = document.getElementById('fim');
+
+    filtroUnidadeSaude.addEventListener('change', fetchData);
+    filtroTipoDemanda.addEventListener('change', fetchData);
+    filtroInicio.addEventListener('change', fetchData);
+    filtroFim.addEventListener('change', fetchData);
+    
 
     // atualizar o andamento - receber
     document.querySelector(".botão-atender-modal").addEventListener("click", async function() {
@@ -428,3 +459,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fetchData();
 });
+
+// Segundo document.addEventListener (para capturar as alterações nos filtros)
+
