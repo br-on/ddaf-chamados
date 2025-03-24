@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Event listeners para os filtros
+    // // Capturar as alterações nos filtros
     const filtroUnidadeSaude = document.getElementById('unidade-saude');
     const filtroTipoDemanda = document.getElementById('tipo-demanda');
     const filtroInicio = document.getElementById('inicio');
@@ -459,6 +459,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fetchData();
 });
-
-// Segundo document.addEventListener (para capturar as alterações nos filtros)
-

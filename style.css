@@ -1,7 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline:opsz,wght@10..72,100..900&display=swap');
+
+.big-shoulders-inline {
+    font-family: "Big Shoulders Inline", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
 }
+:root {
+    --primary-bg: #2E4C58;
+    --accent-color: #F8E3A3;
+    --pendente-color: red;
+    --em-andamento-color: yellow;
+    --finalizado-color: blue;
+}
+
 body {
     display: flex;
     height: 100vh;
@@ -9,15 +26,15 @@ body {
 }
 /* Estilização aprimorada do header */
 header {
-    background: #2E4C58;
+    background: var(--primary-bg);
     padding: 20px;
-    border-bottom: 3px solid #F8E3A3;
+    border-bottom: 3px solid var(--accent-color);
     text-align: center;
     height: auto;
 }
 header h1 {
-    color: #F8E3A3;
-    font-family: 'Arial', sans-serif;
+    color: var(--accent-color);
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 2em;
     font-weight: bold;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
@@ -25,7 +42,7 @@ header h1 {
 }
 main {
     height: 70vh;
-    background: #011d1d;
+    background: #013030;
 }
 footer {
     height:15vh;
@@ -33,21 +50,19 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: antiquewhite;
-    border-top: solid 2px white;
-    background: #2E4C58;
+    color: var(--accent-color);
+    border-top: solid 4px var(--accent-color);
+    background: var(--primary-bg);
     font-size: 0.8em;
 }
 .footer-sdds4{
     font-size: 1.5em;
-    margin-top: 1.5px;
-    background-color: rgb(10, 78, 155);
+    color: white;
     border-radius: 10px;
     padding: 10px;
-    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: bold;
-    border-bottom: solid 1px white;
-    border-right: solid 0.8px white;
+    border-bottom: solid 2.5px var(--accent-color);
+    border-right: solid 2.5px var(--accent-color);
 }
 /* Estilização dos filtros */
 .filtros {
@@ -73,7 +88,7 @@ footer {
     column-gap: 3%;
 }
 .demanda-tipo {
-    border: solid rgb(255, 255, 255) 2px;
+    border: solid 2px var(--accent-color);
     border-radius: 20px;
     display: flex;
 }
@@ -271,7 +286,6 @@ footer {
     flex-direction: column;
     width: 30vw;
 }
-
 .img-tipo-demanda {
     width: 25%;
     border-top-left-radius: 18.5px;
@@ -279,7 +293,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-right: solid 4px #fff;
+    border-right: solid 4px var(--accent-color);
 }
 .img-tipo-demanda img {
     max-height: 90%;
@@ -295,8 +309,9 @@ footer {
 }
 .titulo-tipo-demanda {
     height: 25%;
+    color: var(--accent-color);
     font-size: 1.5em;
-    border-bottom: solid 2.5px white;
+    border-bottom: solid 2.5px var(--accent-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -315,17 +330,16 @@ footer {
 }
 .api-info {
     font-size: 1.5em;
-    color: rgb(247, 247, 247);
+    color: var(--accent-color);
 }
-
 .andamento-recebido {
-    background-color: red;
+    background-color: var(--pendente-color);
 }
 .andamento-ematendimento{
-    background-color: yellow;
+    background-color: var(--em-andamento-color);
 }
 .andamento-finalizado {
-    background-color: blue;
+    background-color: var(--finalizado-color);
 }
 .opaca {
     opacity: 0.25; 
@@ -340,7 +354,7 @@ footer {
     transform: translate(-50%, -50%);
     width: 450px;
     max-width: 90%;
-    background: #2E4C58;
+    background: var(--primary-bg);
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
@@ -352,7 +366,7 @@ footer {
     line-height: 1.5;
 }
 .modal-content h2 {
-    color: #F8E3A3;
+    color: var(--accent-color);
     font-size: 1.8em;
     margin-bottom: 15px;
     text-align: center;
@@ -367,16 +381,16 @@ footer {
 .botão-fechar-modal {
     font-size: 1.5em;
     font-weight: bold;
-    color: #F8E3A3;
+    color: var(--accent-color);
     padding: 5px 12px;
     cursor: pointer;
-    border: 2px solid #F8E3A3;
+    border: 2px solid var(--accent-color);
     border-radius: 50%;
     background-color: transparent;
     transition: all 0.3s ease;
 }
 .botão-fechar-modal:hover {
-    background-color: #D9534F;
+    background-color: #d6342e;
     color: white;
     border-color: #D9534F;
 }
@@ -415,7 +429,7 @@ footer {
 .modal-form-id {
     font-size: 1.2em;
     font-weight: bold;
-    border-bottom: 3px solid #F8E3A3;
+    border-bottom: 3px solid var(--accent-color);
 }
 .modal-form-us, .modal-form-demanda {
     display: flex;
@@ -434,7 +448,7 @@ footer {
 }
 /* Texto do modal */
 .modal-form-campo {
-    color: #F8E3A3;
+    color: var(--accent-color);
     font-weight: bold;
 }
 .modal-form-valor {
@@ -445,21 +459,21 @@ footer {
 /* Estilização para a área de finalização */
 #modal-finalizar {
     padding: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 255, 255, 0.1);
     border-radius: 8px;
     margin-bottom: 10px;
 }
 /* Título da seção de finalização */
 #modal-finalizar h3 {
     font-size: 1.6em;
-    color: #F8E3A3;
+    color: var(--accent-color);
     margin-bottom: 10px;
     text-align: center;
 }
 /* Estilo dos labels dentro da área de finalização */
 #modal-finalizar label {
     font-size: 1.2em;
-    color: #F8E3A3;
+    color: var(--accent-color);
     font-weight: bold;
     display: block;
     margin-bottom: 8px;
@@ -469,14 +483,14 @@ footer {
     font-size: 1.1em;
     padding: 8px;
     background-color: rgba(255, 255, 255, 0.2);
-    color: #F8E3A3;
+    color: var(--accent-color);
     border: none;
     border-radius: 6px;
     width: 100%;
     margin-bottom: 15px;
 }
 .modal-form-valor option {
-    color: black;
+    color: #034c4c;
     font-weight: bold;
 }
 /* Estilo do campo de observação (textarea) */
@@ -496,7 +510,7 @@ footer {
     padding-left: 10px;
 }
 #modal-resultado h3 {
-    color: #F8E3A3;
+    color: var(--accent-color);
     
 } 
 
@@ -550,7 +564,6 @@ footer {
     }
     footer {
         padding: 5px;
-        border-top: solid 5px white;
     }
     .tipos-demandas {
         max-height: 100vh;
@@ -635,7 +648,7 @@ footer {
     }
     header {
         height: 20vh;
-        border-bottom: solid 3px white ;
+        border-bottom: solid 3px var(--accent-color) ;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -670,7 +683,6 @@ footer {
     }
     .titulo-tipo-demanda {
         font-size: 1.5em;
-        border-bottom: solid 2.5px white;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -684,7 +696,6 @@ footer {
         column-gap: 3%;
     }
     .demanda-tipo {
-        border: solid rgb(255, 255, 255) 2px;
         border-radius: 0;
         display: flex;
     }
@@ -698,7 +709,6 @@ footer {
         align-items: center;
         justify-content: center;
         color: antiquewhite;
-        border-top: solid 5px white;
     }
     .img-tipo-demanda {
         width: 25%;
