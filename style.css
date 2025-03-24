@@ -3,7 +3,7 @@
     padding: 0;
 }
 body {
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     display: flex;
     height: 100vh;
     flex-direction: column;
@@ -26,10 +26,12 @@ header h1 {
 }
 main {
     height: 70vh;
+    background: #011d1d;
 }
 .percentual {
     height: 15vh;
     border-top: solid 2px white;  
+    background: #2E4C58;
 }
 footer {
     height:5vh;
@@ -38,7 +40,8 @@ footer {
     align-items: center;
     justify-content: center;
     color: antiquewhite;
-    border-top: solid 5px white;
+    border-top: solid 2px white;
+    background: #094c66;
 }
 /* Estilização dos filtros */
 .filtros {
