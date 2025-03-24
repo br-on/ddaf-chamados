@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const API_URL = 'http://localhost:3000/ddaf-chamados';
-    const USE_LOCAL_DATA = true; // utilizar dados locais para testes
+    const USE_LOCAL_DATA = false; // utilizar dados locais para testes
 
     async function fetchData() {
         try {
