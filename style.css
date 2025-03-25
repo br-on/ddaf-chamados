@@ -14,9 +14,9 @@
 :root {
     --primary-bg: #2E4C58;
     --accent-color: #F8E3A3;
-    --pendente-color: red;
-    --em-andamento-color: yellow;
-    --finalizado-color: blue;
+    --pendente-color: rgb(219, 59, 59);
+    --em-andamento-color: rgb(252, 252, 114);
+    --finalizado-color: rgb(30, 161, 96);
 }
 
 body {
@@ -118,7 +118,7 @@ footer {
     margin-top: 10px;
 }
 .drecebida {
-    background-color: red;
+    background-color: var(--pendente-color);
     color: white;
 }
 .drecebida-botoes {
@@ -133,7 +133,7 @@ footer {
     font-weight: bold;
 }
 .dandamento {
-    background-color: yellow;
+    background-color: var(--em-andamento-color);
     color: black;
 }
 .dandamento-botoes {
@@ -148,7 +148,7 @@ footer {
     font-weight: bold;
 }
 .dfinalizada {
-    background-color: blue;
+    background-color: var(--finalizado-color);
     color: white;
 }
 .dfinalizada-botoes {
