@@ -1,4 +1,30 @@
-texto.txt
+/api/server.js
+# node modules
+node_modules/
+
+# ambiente
 .env
-.history
-test.js
+.env.local
+.env.*.local
+
+# log e debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# sistema operacional
+.DS_Store
+Thumbs.db
+
+# vercel
+.vercel/
+
+# arquivos de build (se você tiver)
+dist/
+build/
+.next/
+
+# cache do npm ou yarn
+.pnpm-debug.log*
+.cache/
+

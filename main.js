@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const API_URL = 'http://localhost:3000/ddaf-chamados';
+
+    const API_URL = location.hostname === "localhost"
+        ? "http://localhost:3000/api/ddaf-chamados"
+        : "https://ddaf-chamados.vercel.app/api/ddaf-chamados";
+
     const USE_LOCAL_DATA = false; // utilizar dados locais para testes
 
     async function fetchData() {
@@ -59,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // atualizar o andamento - receber
     document.querySelector(".botão-atender-modal").addEventListener("click", async function() {
         const modalId = document.getElementById("modal-id").textContent.trim(); // Obtém o ID do chamado
-        const url = `http://localhost:3000/ddaf-chamados/${modalId}`; // URL do backend
+        const url = `${API_URL}/${modalId}`; // URL do backend
 
         // Dados a serem enviados para o backend
         const data = {
@@ -101,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const statusSelecionado = document.getElementById("modal-status-finalizacao").value; // Pega o status selecionado
         const observacao = document.getElementById("modal-observacao").value.trim(); // Pega a observação digitada
     
-        const url = `http://localhost:3000/ddaf-chamados/${modalId}`;
+        const url = `${API_URL}/${modalId}`;
     
         // Dados a serem enviados para o backend
         const data = {
