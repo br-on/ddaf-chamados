@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const API_URL ="https://ddaf-chamados.vercel.app/api/chamados";
+    const API_URL ="https://ddaf-chamados.vercel.app/api/ddaf-chamados";
 
     const USE_LOCAL_DATA = false; // utilizar dados locais para testes
 
