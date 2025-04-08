@@ -1,5 +1,4 @@
-// /api/ddaf-chamados/[id].js
-import { supabase } from "../supabase"; // relativo à pasta atual
+import { supabase } from "../supabase"; 
 
 export default async function handler(req, res) {
   if (req.method !== "PUT") {
@@ -12,16 +11,20 @@ export default async function handler(req, res) {
   if (!id) {
     return res.status(400).json({ error: "ID do chamado não fornecido" });
   }
+  
+  // campos que serão realmente atualizados
+  const updateFields = {
+    dt_atualizacao: new Date().toISOString(),
+  };
+
+  if (andamento !== undefined) updateFields.andamento = andamento;
+  if (status !== undefined) updateFields.status = status;
+  if (observacao !== undefined) updateFields.observacao = observacao;
 
   try {
     const { data, error } = await supabase
       .from("ddaf-chamados")
-      .update({
-        andamento,
-        status,
-        observacao,
-        dt_atualizacao: new Date().toISOString(), // opcional
-      })
+      .update(updateFields)
       .eq("id", id);
 
     if (error) {
