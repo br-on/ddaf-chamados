@@ -356,7 +356,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 modal.style.display = "none";  // Esconde o modal
             });
 
+            // Validação ao clicar em Finalizar Chamado
+            botaoFinalizar.addEventListener("click", function () {
+                const statusFinal = document.getElementById("modal-status-finalizacao").value.trim();
+                const observacao = document.getElementById("modal-observacao").value.trim();
+
+                if (!statusFinal || observacao === "") {
+                    alert("Por favor, preencha o status da finalização e insira uma observação antes de finalizar o chamado.");
+                    return;
+                }
+
+                // Aqui você pode seguir com a lógica para enviar os dados para a API
+                // Exemplo: finalizarChamado(demanda.id, statusFinal, observacao);
+                console.log("Chamado pode ser finalizado:", demanda.id, statusFinal, observacao);
+            });
+
         }
+
+
       
 //======================================================
 
