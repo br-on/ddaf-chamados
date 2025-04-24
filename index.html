@@ -11,114 +11,134 @@
 </head>
 <body>
     <header>
-       <center><h1>Radar de Monitoramento de Chamados - DDAF</h1></center> 
-        <section class="filtros">
-            <div class="opcao-filtro-datas">
-                <span>Período</span>
-                <div class="input-group">
-                    <label for="inicio">Início</label>
-                    <input type="date" id="inicio">
-                    <label for="fim">Fim</label>
-                    <input type="date" id="fim">
-                </div>
-            </div>    
-
-            <div class="opcao-filtro">
-                <label for="unidade-saude">Unidade de Saúde</label>
-                <select name="unidade-saude" id="unidade-saude">
-                    <option value="" disabled selected>Selecione uma unidade</option>
-                    <option value="">todos</option>
-                    <optgroup label="USF+">
-                        <option value="USF MAIS CARANGUEJO">USF+ CARANGUEJO</option>
-                        <option value="USF MAIS EMOCY KRAUSE">USF+ EMOCY KRAUSE</option>
-                        <option value="USF MAIS JARDIM TERESÓPOLIS">USF+ JARDIM TERESÓPOLIS</option>
-                        <option value="USF MAIS MISTA OLINTO OLEVEIRA">USF+ MISTA OLINTO OLEVEIRA</option>
-                        <option value="USF MAIS VILA ARRAES">USF+ VILA ARRAES</option>
-                        </optgroup>
-                    
-                        <optgroup label="USF">
-                        <option value="USF AMAURY DE MEDEIROS">USF AMAURY DE MEDEIROS</option>
-                        <option value="USF BARREIRAS">USF BARREIRAS</option>
-                        <option value="USF BRASILIT">USF BRASILIT</option>
-                        <option value="USF CASARÃO DO CORDEIRO">USF CASARÃO DO CORDEIRO</option>
-                        <option value="USF COSIROF">USF COSIROF</option>
-                        <option value="USF COSME E DAMIÃO">USF COSME E DAMIÃO</option>
-                        <option value="USF ENGENHO DO MEIO">USF ENGENHO DO MEIO</option>
-                        <option value="USF MACAE">USF MACAE</option>
-                        <option value="USF ROSA SELVAGEM">USF ROSA SELVAGEM</option>
-                        <option value="USF SINOS">USF SINOS</option>
-                        <option value="USF SITIO CARDOSO">USF SITIO CARDOSO</option>
-                        <option value="USF SITIO DA PALMEIRAS">USF SITIO DA PALMEIRAS</option>
-                        <option value="USF SITIO WANDERLEY">USF SITIO WANDERLEY</option>
-                        <option value="USF SKYLAB">USF SKYLAB</option>
-                        <option value="USF VILA UNIÃO">USF VILA UNIÃO</option>
-                        <option value="USF VIETNÃ">USF VIETNÃ</option>
-                        </optgroup>
-                    
-                        <optgroup label="UBT">
-                        <option value="UBT DR. JOSE DUSTAN">UBT DR. JOSE DUSTAN</option>
-                        <option value="UBT JOAQUIM CAVALCANTE">UBT JOAQUIM CAVALCANTE</option>
-                        </optgroup>
-                    
-                        <optgroup label="CAPS">
-                        <option value="CAPS ESPAÇO VIDA">CAPS ESPAÇO VIDA</option>
-                        <option value="CAPS EULÂMPIO">CAPS EULÂMPIO</option>
-                        </optgroup>
-                    
-                        <optgroup label="ACADEMIA">
-                        <option value="ACADEMIA POLO AV DO FORTE">ACADEMIA POLO AV DO FORTE</option>
-                        <option value="ACADEMIA POLO BEIRA RIO">ACADEMIA POLO BEIRA RIO</option>
-                        <option value="ACADEMIA POLO CAVOUCO">ACADEMIA POLO CAVOUCO</option>
-                        <option value="ACADEMIA POLO ENG DO MEIO">ACADEMIA POLO ENG DO MEIO</option>
-                        <option value="ACADEMIA POLO PRAÇA DO POETA">ACADEMIA POLO PRAÇA DO POETA</option>
-                        <option value="ACADEMIA POLO RODA DE FOGO">ACADEMIA POLO RODA DE FOGO</option>
-                        <option value="ACADEMIA POLO SALGUEIRO">ACADEMIA POLO SALGUEIRO</option>
-                        <option value="ACADEMIA PRAÇA DA VÁRZEA">ACADEMIA PRAÇA DA VÁRZEA</option>
-                        </optgroup>
-                    
-                        <optgroup label="P.A">
-                        <option value="P.A DUSTAN">P.A DUSTAN</option>
-                        <option value="P.A ENG DO MEIO">P.A ENG DO MEIO</option>
-                        <option value="P.A PRADO">P.A PRADO</option>
-                        <option value="P.A VÁRZEA">P.A VÁRZEA</option>
-                        <option value="P.A VILA UNIÃO">P.A VILA UNIÃO</option>
-                        <option value="P.A">P.A</option>
-                        </optgroup>
-                    
-                        <optgroup label="UA 24h">
-                        <option value="UA 24h CELESTE AÍDA">UA 24h CELESTE AÍDA</option>
-                        </optgroup>
-                    
-                        <optgroup label="CECON">
-                        <option value="CECON">CECON</option>
-                        </optgroup>
-                    
-                        <optgroup label="UCIS/SIS">
-                        <option value="UCIS/SIS">UCIS/SIS</option>
-                        </optgroup>
-                </select>                    
-            </div>
-            <div class="opcao-filtro">
-                <label for="tipo-demanda">Tipo de demanda</label>
-                <select name="tipo-demanda" id="tipo-demanda">
-                    <option value="" disabled selected>Selecione um tipo de demanda</option>
-                    <option value="">todos</option>
-                    <option value="agua-mineral">Água Mineral</option>
-                    <option value="almoxarifado">Almoxarifado</option>
-                    <option value="bens-inserviveis">Bens Inservíveis</option>
-                    <option value="capinacao">Capinação</option>
-                    <option value="carro-pipa">Carro-Pipa</option>
-                    <option value="climatizacao">Climatização</option>
-                    <option value="eletrica">Elétrica</option>
-                    <option value="hidraulica">Hidráulica</option>
-                    <option value="infraestrutura">Infraestrutura</option>
-                    <option value="lixo-infectado">Lixo Infectado</option>
-                    <option value="poda">Poda</option>
-                    <option value="reparos">Reparos</option>
-                </select>                    
-            </div>  
-        </section>
-    </header>
+        <center><h1>(Gêmeo) Radar de Monitoramento de Chamados - DDAF</h1></center> 
+        <section class="header">
+             <section class="sys">
+                 <div class="sys-status">
+                     <p>Sistema desbloqueado</p>
+                     <img src="/img/cadeado-aberto.png" alt="">
+                     <button class="off">Bloquear</button>
+                 </div>
+                 <div class="sys-user-logado">
+                     <div class="sys-user-info">
+                         <span>Usuário:</span>
+                         <span>Nome Completo do Usuário</span></div>
+                     <div class="sys-user-info">
+                         <span>Unidade:</span>
+                         <span>DDAF - Distrito Sanitário IV</span></div>
+                     <div class="sys-user-info">
+                         <span>Cargo:</span>
+                         <span>Coordenador(a)</span></div>
+                 </div>
+             </section>
+             <section class="filtros">
+                 <div class="opcao-filtro-datas">
+                     <span>Período</span>
+                     <div class="input-group">
+                         <label for="inicio">Início</label>
+                         <input type="date" id="inicio">
+                         <label for="fim">Fim</label>
+                         <input type="date" id="fim">
+                     </div>
+                 </div>    
+ 
+                 <div class="opcao-filtro">
+                     <label for="unidade-saude">Unidade de Saúde</label>
+                     <select name="unidade-saude" id="unidade-saude">
+                         <option value="" disabled selected>Selecione uma unidade</option>
+                         <option value="">todos</option>
+                         <optgroup label="USF+">
+                             <option value="USF MAIS CARANGUEJO">USF+ CARANGUEJO</option>
+                             <option value="USF MAIS EMOCY KRAUSE">USF+ EMOCY KRAUSE</option>
+                             <option value="USF MAIS JARDIM TERESÓPOLIS">USF+ JARDIM TERESÓPOLIS</option>
+                             <option value="USF MAIS MISTA OLINTO OLEVEIRA">USF+ MISTA OLINTO OLEVEIRA</option>
+                             <option value="USF MAIS VILA ARRAES">USF+ VILA ARRAES</option>
+                             </optgroup>
+                         
+                             <optgroup label="USF">
+                             <option value="USF AMAURY DE MEDEIROS">USF AMAURY DE MEDEIROS</option>
+                             <option value="USF BARREIRAS">USF BARREIRAS</option>
+                             <option value="USF BRASILIT">USF BRASILIT</option>
+                             <option value="USF CASARÃO DO CORDEIRO">USF CASARÃO DO CORDEIRO</option>
+                             <option value="USF COSIROF">USF COSIROF</option>
+                             <option value="USF COSME E DAMIÃO">USF COSME E DAMIÃO</option>
+                             <option value="USF ENGENHO DO MEIO">USF ENGENHO DO MEIO</option>
+                             <option value="USF MACAE">USF MACAE</option>
+                             <option value="USF ROSA SELVAGEM">USF ROSA SELVAGEM</option>
+                             <option value="USF SINOS">USF SINOS</option>
+                             <option value="USF SITIO CARDOSO">USF SITIO CARDOSO</option>
+                             <option value="USF SITIO DA PALMEIRAS">USF SITIO DA PALMEIRAS</option>
+                             <option value="USF SITIO WANDERLEY">USF SITIO WANDERLEY</option>
+                             <option value="USF SKYLAB">USF SKYLAB</option>
+                             <option value="USF VILA UNIÃO">USF VILA UNIÃO</option>
+                             <option value="USF VIETNÃ">USF VIETNÃ</option>
+                             </optgroup>
+                         
+                             <optgroup label="UBT">
+                             <option value="UBT DR. JOSE DUSTAN">UBT DR. JOSE DUSTAN</option>
+                             <option value="UBT JOAQUIM CAVALCANTE">UBT JOAQUIM CAVALCANTE</option>
+                             </optgroup>
+                         
+                             <optgroup label="CAPS">
+                             <option value="CAPS ESPAÇO VIDA">CAPS ESPAÇO VIDA</option>
+                             <option value="CAPS EULÂMPIO">CAPS EULÂMPIO</option>
+                             </optgroup>
+                         
+                             <optgroup label="ACADEMIA">
+                             <option value="ACADEMIA POLO AV DO FORTE">ACADEMIA POLO AV DO FORTE</option>
+                             <option value="ACADEMIA POLO BEIRA RIO">ACADEMIA POLO BEIRA RIO</option>
+                             <option value="ACADEMIA POLO CAVOUCO">ACADEMIA POLO CAVOUCO</option>
+                             <option value="ACADEMIA POLO ENG DO MEIO">ACADEMIA POLO ENG DO MEIO</option>
+                             <option value="ACADEMIA POLO PRAÇA DO POETA">ACADEMIA POLO PRAÇA DO POETA</option>
+                             <option value="ACADEMIA POLO RODA DE FOGO">ACADEMIA POLO RODA DE FOGO</option>
+                             <option value="ACADEMIA POLO SALGUEIRO">ACADEMIA POLO SALGUEIRO</option>
+                             <option value="ACADEMIA PRAÇA DA VÁRZEA">ACADEMIA PRAÇA DA VÁRZEA</option>
+                             </optgroup>
+                         
+                             <optgroup label="P.A">
+                             <option value="P.A DUSTAN">P.A DUSTAN</option>
+                             <option value="P.A ENG DO MEIO">P.A ENG DO MEIO</option>
+                             <option value="P.A PRADO">P.A PRADO</option>
+                             <option value="P.A VÁRZEA">P.A VÁRZEA</option>
+                             <option value="P.A VILA UNIÃO">P.A VILA UNIÃO</option>
+                             <option value="P.A">P.A</option>
+                             </optgroup>
+                         
+                             <optgroup label="UA 24h">
+                             <option value="UA 24h CELESTE AÍDA">UA 24h CELESTE AÍDA</option>
+                             </optgroup>
+                         
+                             <optgroup label="CECON">
+                             <option value="CECON">CECON</option>
+                             </optgroup>
+                         
+                             <optgroup label="UCIS/SIS">
+                             <option value="UCIS/SIS">UCIS/SIS</option>
+                             </optgroup>
+                     </select>                    
+                 </div>
+                 <div class="opcao-filtro">
+                     <label for="tipo-demanda">Tipo de demanda</label>
+                     <select name="tipo-demanda" id="tipo-demanda">
+                         <option value="" disabled selected>Selecione um tipo de demanda</option>
+                         <option value="">todos</option>
+                         <option value="agua-mineral">Água Mineral</option>
+                         <option value="almoxarifado">Almoxarifado</option>
+                         <option value="bens-inserviveis">Bens Inservíveis</option>
+                         <option value="capinacao">Capinação</option>
+                         <option value="carro-pipa">Carro-Pipa</option>
+                         <option value="climatizacao">Climatização</option>
+                         <option value="eletrica">Elétrica</option>
+                         <option value="hidraulica">Hidráulica</option>
+                         <option value="infraestrutura">Infraestrutura</option>
+                         <option value="lixo-infectado">Lixo Infectado</option>
+                         <option value="poda">Poda</option>
+                         <option value="reparos">Reparos</option>
+                     </select>                    
+                 </div>  
+             </section>
+         </section>
+     </header>
     <main>
         <section class="tipos-demandas">
             <div id="demanda-eletrica" class="demanda-tipo">
