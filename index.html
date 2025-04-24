@@ -14,15 +14,16 @@
        <center><h1>Radar de Monitoramento de Chamados - DDAF</h1></center> 
         <section class="filtros">
             <div class="opcao-filtro-datas">
-                <div><label for="inicio">Período:</label></div><br>
+                <span>Período</span>
                 <div class="input-group">
+                    <label for="inicio">Início</label>
                     <input type="date" id="inicio">
-                    <span>até</span>
+                    <label for="fim">Fim</label>
                     <input type="date" id="fim">
                 </div>
             </div>    
-            <div>
-                <div class="opcao-filtro">
+
+            <div class="opcao-filtro">
                 <label for="unidade-saude">Unidade de Saúde</label>
                 <select name="unidade-saude" id="unidade-saude">
                     <option value="" disabled selected>Selecione uma unidade</option>
@@ -33,9 +34,9 @@
                         <option value="USF MAIS JARDIM TERESÓPOLIS">USF+ JARDIM TERESÓPOLIS</option>
                         <option value="USF MAIS MISTA OLINTO OLEVEIRA">USF+ MISTA OLINTO OLEVEIRA</option>
                         <option value="USF MAIS VILA ARRAES">USF+ VILA ARRAES</option>
-                      </optgroup>
+                        </optgroup>
                     
-                      <optgroup label="USF">
+                        <optgroup label="USF">
                         <option value="USF AMAURY DE MEDEIROS">USF AMAURY DE MEDEIROS</option>
                         <option value="USF BARREIRAS">USF BARREIRAS</option>
                         <option value="USF BRASILIT">USF BRASILIT</option>
@@ -52,19 +53,19 @@
                         <option value="USF SKYLAB">USF SKYLAB</option>
                         <option value="USF VILA UNIÃO">USF VILA UNIÃO</option>
                         <option value="USF VIETNÃ">USF VIETNÃ</option>
-                      </optgroup>
+                        </optgroup>
                     
-                      <optgroup label="UBT">
+                        <optgroup label="UBT">
                         <option value="UBT DR. JOSE DUSTAN">UBT DR. JOSE DUSTAN</option>
                         <option value="UBT JOAQUIM CAVALCANTE">UBT JOAQUIM CAVALCANTE</option>
-                      </optgroup>
+                        </optgroup>
                     
-                      <optgroup label="CAPS">
+                        <optgroup label="CAPS">
                         <option value="CAPS ESPAÇO VIDA">CAPS ESPAÇO VIDA</option>
                         <option value="CAPS EULÂMPIO">CAPS EULÂMPIO</option>
-                      </optgroup>
+                        </optgroup>
                     
-                      <optgroup label="ACADEMIA">
+                        <optgroup label="ACADEMIA">
                         <option value="ACADEMIA POLO AV DO FORTE">ACADEMIA POLO AV DO FORTE</option>
                         <option value="ACADEMIA POLO BEIRA RIO">ACADEMIA POLO BEIRA RIO</option>
                         <option value="ACADEMIA POLO CAVOUCO">ACADEMIA POLO CAVOUCO</option>
@@ -73,31 +74,31 @@
                         <option value="ACADEMIA POLO RODA DE FOGO">ACADEMIA POLO RODA DE FOGO</option>
                         <option value="ACADEMIA POLO SALGUEIRO">ACADEMIA POLO SALGUEIRO</option>
                         <option value="ACADEMIA PRAÇA DA VÁRZEA">ACADEMIA PRAÇA DA VÁRZEA</option>
-                      </optgroup>
+                        </optgroup>
                     
-                      <optgroup label="P.A">
+                        <optgroup label="P.A">
                         <option value="P.A DUSTAN">P.A DUSTAN</option>
                         <option value="P.A ENG DO MEIO">P.A ENG DO MEIO</option>
                         <option value="P.A PRADO">P.A PRADO</option>
                         <option value="P.A VÁRZEA">P.A VÁRZEA</option>
                         <option value="P.A VILA UNIÃO">P.A VILA UNIÃO</option>
                         <option value="P.A">P.A</option>
-                      </optgroup>
+                        </optgroup>
                     
-                      <optgroup label="UA 24h">
+                        <optgroup label="UA 24h">
                         <option value="UA 24h CELESTE AÍDA">UA 24h CELESTE AÍDA</option>
-                      </optgroup>
+                        </optgroup>
                     
-                      <optgroup label="CECON">
+                        <optgroup label="CECON">
                         <option value="CECON">CECON</option>
-                      </optgroup>
+                        </optgroup>
                     
-                      <optgroup label="UCIS/SIS">
+                        <optgroup label="UCIS/SIS">
                         <option value="UCIS/SIS">UCIS/SIS</option>
-                      </optgroup>
+                        </optgroup>
                 </select>                    
-                </div>
-                <div class="opcao-filtro">
+            </div>
+            <div class="opcao-filtro">
                 <label for="tipo-demanda">Tipo de demanda</label>
                 <select name="tipo-demanda" id="tipo-demanda">
                     <option value="" disabled selected>Selecione um tipo de demanda</option>
@@ -115,8 +116,7 @@
                     <option value="poda">Poda</option>
                     <option value="reparos">Reparos</option>
                 </select>                    
-                </div>
-            </div>
+            </div>  
         </section>
     </header>
     <main>
@@ -128,9 +128,9 @@
                 <div class="info-tipo-demanda">
                     <div class="titulo-tipo-demanda">Elétrica</div>
                     <div class="contagem-tipo-demanda">
-                        <div class="caixa-finalizado"><span>Pendente</span><span id="api-pendente-eletrica" class="api-info"></span></div>
+                        <div class="caixa-finalizado"><span><p>Pendente</p></span><span id="api-pendente-eletrica" class="api-info"></span></div>
                         <div class="caixa-finalizado"><span>Resolvido</span><span id="api-resolvido-eletrica" class="api-info"></span></div>
-                        <div class="caixa-finalizado"><center><span>Não Resolvido</span></center><span id="api-naoresolvido-eletrica" class="api-info"></span></div>
+                        <div class="caixa-finalizado"><span>Não Resolvido</span><span id="api-naoresolvido-eletrica" class="api-info"></span></div>
                     </div>
                 </div>
             </div>
@@ -143,7 +143,7 @@
                     <div class="contagem-tipo-demanda">
                         <div class="caixa-finalizado"><span>Pendente</span><span id="api-pendente-hidraulica" class="api-info"></span></div>
                         <div class="caixa-finalizado"><span>Resolvido</span><span id="api-resolvido-hidraulica" class="api-info"></span></div>
-                        <div class="caixa-finalizado"><center><span>Não Resolvido</span></center><span id="api-naoresolvido-hidraulica" class="api-info"></span></div>
+                        <div class="caixa-finalizado"><span>Não Resolvido</span><span id="api-naoresolvido-hidraulica" class="api-info"></span></div>
                     </div>
                 </div>
             </div>
@@ -156,7 +156,7 @@
                     <div class="contagem-tipo-demanda">
                         <div class="caixa-finalizado"><span>Pendente</span><span id="api-pendente-infraestrutura" class="api-info"></span></div>
                         <div class="caixa-finalizado"><span>Resolvido</span><span id="api-resolvido-infraestrutura" class="api-info"></span></div>
-                        <div class="caixa-finalizado"><center><span>Não Resolvido</span></center><span id="api-naoresolvido-infraestrutura" class="api-info"></span></div>
+                        <div class="caixa-finalizado"><span>Não Resolvido</span><span id="api-naoresolvido-infraestrutura" class="api-info"></span></div>
                     </div>
                 </div>
             </div>
@@ -169,7 +169,7 @@
                     <div class="contagem-tipo-demanda">
                         <div class="caixa-finalizado"><span>Pendente</span><span id="api-pendente-climatizacao" class="api-info"></span></div>
                         <div class="caixa-finalizado"><span>Resolvido</span><span id="api-resolvido-climatizacao" class="api-info"></span></div>
-                        <div class="caixa-finalizado"><center><span>Não Resolvido</span></center><span id="api-naoresolvido-climatizacao" class="api-info"></span></div>
+                        <div class="caixa-finalizado"><span>Não Resolvido</span><span id="api-naoresolvido-climatizacao" class="api-info"></span></div>
                     </div>
                 </div>
             </div>
@@ -182,7 +182,7 @@
                     <div class="contagem-tipo-demanda">
                         <div class="caixa-finalizado"><span>Pendente</span><span id="api-pendente-capinacao" class="api-info"></span></div>
                         <div class="caixa-finalizado"><span>Resolvido</span><span id="api-resolvido-capinacao" class="api-info"></span></div>
-                        <div class="caixa-finalizado"><center><span>Não Resolvido</span></center><span id="api-naoresolvido-capinacao" class="api-info"></span></div>
+                        <div class="caixa-finalizado"><span>Não Resolvido</span><span id="api-naoresolvido-capinacao" class="api-info"></span></div>
                     </div>
                 </div>
             </div>
@@ -195,7 +195,7 @@
                     <div class="contagem-tipo-demanda">
                         <div class="caixa-finalizado"><span>Pendente</span><span id="api-pendente-reparos" class="api-info"></span></div>
                         <div class="caixa-finalizado"><span>Resolvido</span><span id="api-resolvido-reparos" class="api-info"></span></div>
-                        <div class="caixa-finalizado"><center><span>Não Resolvido</span></center><span id="api-naoresolvido-reparos" class="api-info"></span></div>
+                        <div class="caixa-finalizado"><span>Não Resolvido</span><span id="api-naoresolvido-reparos" class="api-info"></span></div>
                     </div>
                 </div>
             </div>
@@ -208,7 +208,7 @@
                     <div class="contagem-tipo-demanda">
                         <div class="caixa-finalizado"><span>Pendente</span><span id="api-pendente-bens-inserviveis" class="api-info"></span></div>
                         <div class="caixa-finalizado"><span>Resolvido</span><span id="api-resolvido-bens-inserviveis" class="api-info"></span></div>
-                        <div class="caixa-finalizado"><center><span>Não Resolvido</span></center><span id="api-naoresolvido-bens-inserviveis" class="api-info"></span></div>
+                        <div class="caixa-finalizado"><span>Não Resolvido</span><span id="api-naoresolvido-bens-inserviveis" class="api-info"></span></div>
                     </div>
                 </div>
             </div>
@@ -221,7 +221,7 @@
                     <div class="contagem-tipo-demanda">
                         <div class="caixa-finalizado"><span>Pendente</span><span id="api-pendente-almoxarifado" class="api-info"></span></div>
                         <div class="caixa-finalizado"><span>Resolvido</span><span id="api-resolvido-almoxarifado" class="api-info"></span></div>
-                        <div class="caixa-finalizado"><center><span>Não Resolvido</span></center><span id="api-naoresolvido-almoxarifado" class="api-info"></span></div>
+                        <div class="caixa-finalizado"><span>Não Resolvido</span><span id="api-naoresolvido-almoxarifado" class="api-info"></span></div>
                     </div>
                 </div>
             </div>
@@ -234,7 +234,7 @@
                     <div class="contagem-tipo-demanda">
                         <div class="caixa-finalizado"><span>Pendente</span><span id="api-pendente-agua-mineral" class="api-info"></span></div>
                         <div class="caixa-finalizado"><span>Resolvido</span><span id="api-resolvido-agua-mineral" class="api-info"></span></div>
-                        <div class="caixa-finalizado"><center><span>Não Resolvido</span></center><span id="api-naoresolvido-agua-mineral" class="api-info"></span></div>
+                        <div class="caixa-finalizado"><span>Não Resolvido</span><span id="api-naoresolvido-agua-mineral" class="api-info"></span></div>
                     </div>
                 </div>
             </div>
@@ -247,7 +247,7 @@
                     <div class="contagem-tipo-demanda">
                         <div class="caixa-finalizado"><span>Pendente</span><span id="api-pendente-carro-pipa" class="api-info"></span></div>
                         <div class="caixa-finalizado"><span>Resolvido</span><span id="api-resolvido-carro-pipa" class="api-info"></span></div>
-                        <div class="caixa-finalizado"><center><span>Não Resolvido</span></center><span id="api-naoresolvido-carro-pipa" class="api-info"></span></div>
+                        <div class="caixa-finalizado"><span>Não Resolvido</span><span id="api-naoresolvido-carro-pipa" class="api-info"></span></div>
                     </div>
                 </div>
             </div>
@@ -260,7 +260,7 @@
                     <div class="contagem-tipo-demanda">
                         <div class="caixa-finalizado"><span>Pendente</span><span id="api-pendente-lixo-infectado" class="api-info"></span></div>
                         <div class="caixa-finalizado"><span>Resolvido</span><span id="api-resolvido-lixo-infectado" class="api-info"></span></div>
-                        <div class="caixa-finalizado"><center><span>Não Resolvido</span></center><span id="api-naoresolvido-lixo-infectado" class="api-info"></span></div>
+                        <div class="caixa-finalizado"><span>Não Resolvido</span><span id="api-naoresolvido-lixo-infectado" class="api-info"></span></div>
                     </div>
                 </div>
             </div>
@@ -273,7 +273,7 @@
                     <div class="contagem-tipo-demanda">
                         <div class="caixa-finalizado"><span>Pendente</span><span id="api-pendente-poda" class="api-info"></span></div>
                         <div class="caixa-finalizado"><span>Resolvido</span><span id="api-resolvido-poda" class="api-info"></span></div>
-                        <div class="caixa-finalizado"><center><span>Não Resolvido</span></center><span id="api-naoresolvido-poda" class="api-info"></span></div>
+                        <div class="caixa-finalizado"><span>Não Resolvido</span><span id="api-naoresolvido-poda" class="api-info"></span></div>
                     </div>
                 </div>
             </div>
