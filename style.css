@@ -802,9 +802,11 @@ footer {
         justify-content: center;
     }
     .andamento-demandas {
+        width: 45%;
         height: 100%;
         display: grid;
         justify-content: center;
+        grid-template-columns: 30% 30% 30%;
         column-gap: 1.5%;
     }
     .demanda-tipo {
