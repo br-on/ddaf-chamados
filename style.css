@@ -83,6 +83,10 @@ header h1 {
     gap: 4px;
     justify-content: center;
 }
+.sys-user-logado p {
+    color: rgba(255, 0, 0, 0.726);
+    font-size: 0.7em;
+}
 .sys-user-logado span:first-child {
     color: var(--accent-color);
     width: 100px;
@@ -798,12 +802,10 @@ footer {
         justify-content: center;
     }
     .andamento-demandas {
-        width: 45%;
         height: 100%;
         display: grid;
         justify-content: center;
-        grid-template-columns: 30% 30% 30%;
-        column-gap: 3%;
+        column-gap: 1.5%;
     }
     .demanda-tipo {
         border-radius: 0;
