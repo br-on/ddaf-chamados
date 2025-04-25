@@ -538,7 +538,7 @@ footer {
 .modal-form-us,
 .modal-form-demanda,
 .modal-form-status {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(98, 121, 111, 0.432);
     padding: 10px;
     border-radius: 8px;
     margin-bottom: 10px;
@@ -546,7 +546,7 @@ footer {
 .modal-form-id {
     font-size: 1.2em;
     font-weight: bold;
-    border-bottom: 3px solid var(--accent-color);
+    border-bottom: 3px solid var(--primary-bg);
 }
 .modal-form-us, .modal-form-demanda {
     display: flex;
@@ -578,21 +578,21 @@ footer {
 /* Estilização para a área de finalização */
 #modal-finalizar {
     padding: 10px;
-    background-color: rgba(0, 255, 255, 0.1);
+    background-color: var(--accent-color);
     border-radius: 8px;
     margin-bottom: 10px;
 }
 /* Título da seção de finalização */
 #modal-finalizar h3 {
     font-size: 1.6em;
-    color: var(--accent-color);
+    color: var(--primary-bg);
     margin-bottom: 10px;
     text-align: center;
 }
 /* Estilo dos labels dentro da área de finalização */
 #modal-finalizar label {
     font-size: 1.2em;
-    color: var(--accent-color);
+    color: var(--primary-bg);
     font-weight: bold;
     display: block;
     margin-bottom: 8px;
