@@ -469,12 +469,14 @@ footer {
     transform: translate(-50%, -50%);
     width: 450px;
     max-width: 90%;
-    background: var(--primary-bg);
+    background: rgb(5, 55, 61);
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     color: #fff;
     font-family: 'Arial', sans-serif;
+    overflow: auto;
+    height: 70vh;
 }
 .modal-content {
     font-size: 16px;
@@ -555,6 +557,8 @@ footer {
     background: rgba(255, 255, 255, 0.1);
     padding: 12px;
     border-radius: 8px;
+    max-height: 100px;
+    overflow: auto;
 }
 .modal-form-status {
     display: flex;
@@ -802,12 +806,10 @@ footer {
         justify-content: center;
     }
     .andamento-demandas {
-        width: 45%;
         height: 100%;
         display: grid;
         justify-content: center;
-        grid-template-columns: 30% 30% 30%;
-        column-gap: 1.5%;
+        column-gap: 3%;
     }
     .demanda-tipo {
         border-radius: 0;
